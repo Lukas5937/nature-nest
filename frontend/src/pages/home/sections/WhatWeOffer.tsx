@@ -2,7 +2,7 @@ import Cabin from "../../../assets/home/WhatWeOffer.jpg";
 
 export default function WhatWeOffer() {
   return (
-    <section className="mx-auto my-16 w-11/12 max-w-screen-2xl rounded-3xl bg-[#FCF9FA] px-12 py-12">
+    <section className="bg-lightMagenta mx-auto my-16 w-11/12 max-w-screen-2xl rounded-3xl px-12 py-12">
       <h2 className="text-magenta text-center font-serif text-3xl sm:text-4xl md:text-5xl">
         What we offer
       </h2>

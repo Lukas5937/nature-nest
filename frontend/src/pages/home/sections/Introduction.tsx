@@ -1,9 +1,20 @@
+import Cabin from "../../../assets/home/Introduction.svg";
+
 export default function Introduction() {
   return (
     <section className="bg-green py-16">
-      <div className="mx-auto grid w-11/12 max-w-screen-xl px-4 md:grid-cols-2">
-        <div className="col-start-2">
-          <h2 className="text-light font-serif text-4xl">Introducing</h2>
+      <div className="mx-auto grid w-11/12 max-w-screen-xl gap-16 px-4 md:grid-cols-2">
+        <div className="flex items-center justify-center">
+          <img
+            className="h-auto w-64 sm:w-80"
+            src={Cabin}
+            alt="Cabin graphic"
+          />
+        </div>
+        <div>
+          <h2 className="text-light text-center font-serif text-3xl sm:text-4xl md:text-start">
+            Introducing
+          </h2>
           <p className="text-light mt-6 leading-7">
             Discover your perfect retreat nestled in the heart of nature. At
             NatureNests, we offer a curated selection of unique cabins designed

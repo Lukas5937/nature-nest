@@ -20,11 +20,9 @@ type ButtonComponentProps = ButtonProps | LinkProps;
 export default function Button(props: ButtonComponentProps) {
   const { type, color, children } = props;
 
-  const colorClass = `bg-${color}`;
-
   if (type === "button") {
     return (
-      <button className={`${colorClass} text-light rounded px-8 py-4`}>
+      <button className={`bg-${color} text-light rounded px-8 py-4`}>
         {children}
       </button>
     );
@@ -33,7 +31,7 @@ export default function Button(props: ButtonComponentProps) {
   if (type === "link") {
     const { to } = props as LinkProps;
     return (
-      <Link className={`${colorClass} text-light rounded px-8 py-4`} to={to}>
+      <Link className={`bg-${color} text-light rounded px-8 py-4`} to={to}>
         {children}
       </Link>
     );
