@@ -1,13 +1,14 @@
-import { useState, type ChangeEvent } from "react"
 import { useQuery } from "@tanstack/react-query"
 import { fetchCabins } from "../../http"
 import { type Cabin, type FetchError } from "../../http"
+import useCabinsFilters from "./hooks/useCabinsFilters"
 
 import CabinCard from "./components/CabinCard"
 import { CircularProgress } from "@mui/material"
 import FetchErrorBox from "../../UI/FetchErrorBox"
 import WhisperingPinesCabin from "../../assets/WhisperingPinesCabin.jpeg"
 import DateInput from "./components/DateInput"
+import SearchInput from "./components/SearchInput"
 
 export default function Cabins() {
   const { data, isPending, isError, error } = useQuery<Cabin[], FetchError>({
@@ -15,46 +16,19 @@ export default function Cabins() {
     queryFn: fetchCabins,
   })
 
-  const [searchTerm, setSearchTerm] = useState("")
-  const [checkInDate, setCheckInDate] = useState("")
-  const [checkOutDate, setCheckOutDate] = useState("")
+  const {
+    occupiedDates,
+    handleSearchValue,
+    handleCheckInValue,
+    handleCheckOutValue,
+    filterResults,
+  } = useCabinsFilters()
 
-  function createDatesArray(checkIn: string, checkOut: string) {
-    const datesArray: Date[] = []
-    for (
-      let i = new Date(checkIn);
-      i <= new Date(checkOut);
-      i.setDate(i.getDate() + 1)
-    ) {
-      datesArray.push(new Date(i))
-    }
-    return datesArray
-  }
-
-  const occupiedDates = createDatesArray(checkInDate, checkOutDate)
   console.log(occupiedDates)
-
-  function handleSearchValue(event: ChangeEvent<HTMLInputElement>) {
-    setSearchTerm(event.currentTarget.value)
-  }
-
-  function handleCheckInValue(event: ChangeEvent<HTMLInputElement>) {
-    setCheckInDate(event.currentTarget.value)
-  }
-
-  function handleCheckOutValue(event: ChangeEvent<HTMLInputElement>) {
-    setCheckOutDate(event.currentTarget.value)
-  }
 
   let searchResults
   if (data) {
-    searchResults = data.filter(
-      (cabin) =>
-        cabin.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        cabin.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        cabin.address.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        cabin.country.toLowerCase().includes(searchTerm.toLowerCase()),
-    )
+    searchResults = filterResults(data)
   }
 
   if (isError) {
@@ -63,7 +37,7 @@ export default function Cabins() {
 
   return (
     <main className="mx-auto my-8 w-11/12 max-w-screen-xl">
-      <input type="search" placeholder="Search" onChange={handleSearchValue} />
+      <SearchInput handleChange={handleSearchValue} />
       <DateInput handleChange={handleCheckInValue} />
       <DateInput handleChange={handleCheckOutValue} />
       {isPending && (

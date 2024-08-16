@@ -1,10 +1,6 @@
-import { type ChangeEvent } from "react"
+import { type CabinsInputProps } from "./SearchInput"
 
-type DateInputProps = {
-  handleChange: (event: ChangeEvent<HTMLInputElement>) => void
-}
-
-export default function DateInput({ handleChange }: DateInputProps) {
+export default function DateInput({ handleChange }: CabinsInputProps) {
   return (
     <input onChange={handleChange} type="date" placeholder="check in date" />
   )
