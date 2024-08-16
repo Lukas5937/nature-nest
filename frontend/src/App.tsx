@@ -5,9 +5,9 @@ import Navigation from "./Navigation"
 import ErrorPage from "./ErrorPage"
 import Home from "./pages/home/Home"
 import Cabins from "./pages/cabins/Cabins"
-import CabinDetails from "./pages/cabins/CabinDetails"
-import CabinDetailsDescription from "./pages/cabins/CabinDetailsDescription"
-import CabinDetailsMap from "./pages/cabins/CabinDetailsMap"
+import CabinDetails from "./pages/cabinDetails/CabinDetails"
+import CabinDetailsDescription from "./pages/cabinDetails/components/CabinDetailsDescription"
+import CabinDetailsMap from "./pages/cabinDetails/components/CabinDetailsMap"
 
 function App() {
   const router = createBrowserRouter([
