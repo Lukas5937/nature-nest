@@ -1,33 +1,6 @@
 import Forest from "../../../assets/home/Forest.jpg";
 import Waterfall from "../../../assets/home/Waterfall.jpg";
 
-{
-  /* <header className="mx-auto w-11/12 max-w-screen-xl">
-      <div className="grid min-h-screen grid-cols-3 gap-4 pb-36 pt-8">
-        <div className="bg-dark col-span-2 flex items-center justify-center rounded-3xl">
-          <h1 className="text-light flex font-serif text-5xl">Adventurers</h1>
-        </div>
-        <div className="overflow-hidden rounded-3xl">
-          <img
-            className="h-full w-full object-cover"
-            src={Forest}
-            alt="Forest"
-          />
-        </div>
-        <div className="overflow-hidden rounded-3xl">
-          <img
-            className="h-full w-full object-cover"
-            src={Waterfall}
-            alt="Waterfall"
-          />
-        </div>
-        <div className="bg-dark col-span-2 flex items-center justify-center rounded-3xl">
-          <h2 className="text-blue font-serif text-5xl">Travel Wild</h2>
-        </div>
-      </div>
-    </header> */
-}
-
 export default function Header() {
   return (
     <header className="mx-auto w-11/12 max-w-screen-xl">

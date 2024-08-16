@@ -1,4 +1,5 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom"
+import Footer from "./UI/Footer"
 
 export default function Navigation() {
   return (
@@ -6,7 +7,7 @@ export default function Navigation() {
       <nav className="mx-auto w-11/12 max-w-screen-xl">
         <ul className="flex items-center gap-16 py-8 text-xl">
           <li className="mr-auto">
-            <NavLink to="" className="text-green font-serif text-2xl font-bold">
+            <NavLink to="" className="font-serif text-2xl font-bold text-green">
               NatureNests
             </NavLink>
           </li>
@@ -15,7 +16,7 @@ export default function Navigation() {
               className={({ isActive }) =>
                 isActive ? "border-b-2 border-stone-300" : ""
               }
-              to=""
+              to="/cabins"
             >
               Cabins
             </NavLink>
@@ -33,6 +34,7 @@ export default function Navigation() {
         </ul>
       </nav>
       <Outlet />
+      <Footer />
     </div>
-  );
+  )
 }
