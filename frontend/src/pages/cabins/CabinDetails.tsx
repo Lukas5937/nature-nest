@@ -39,7 +39,12 @@ export default function CabinDetails() {
   let content
 
   if (isPending) {
-    content = <CircularProgress />
+    content = (
+      <>
+        <p>Loading...</p>
+        <CircularProgress />
+      </>
+    )
   }
 
   if (isError) {
