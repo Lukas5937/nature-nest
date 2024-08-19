@@ -15,6 +15,11 @@ export default function CabinCard({
     <div className="flex flex-col">
       <Link to={id}>
         <div className="relative h-80">
+          {cabin.occupancy.length > 40 && (
+            <p className="absolute right-2 top-2 z-20 rounded-lg bg-magenta px-4 py-2 text-sm text-light">
+              popular
+            </p>
+          )}
           <img
             className="h-full w-full rounded object-cover"
             src={img}

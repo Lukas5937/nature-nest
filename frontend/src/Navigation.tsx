@@ -1,4 +1,4 @@
-import { NavLink, Outlet } from "react-router-dom"
+import { NavLink, Outlet, ScrollRestoration } from "react-router-dom"
 import Footer from "./UI/Footer"
 
 export default function Navigation() {
@@ -35,6 +35,7 @@ export default function Navigation() {
       </nav>
       <Outlet />
       <Footer />
+      <ScrollRestoration />
     </div>
   )
 }

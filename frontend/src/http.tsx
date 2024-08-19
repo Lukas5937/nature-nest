@@ -22,6 +22,7 @@ export type Cabin = {
   price: number
   coordinates: Coordinates
   id: string
+  occupancy: string[]
 }
 
 export async function fetchCabins({ signal }: { signal?: AbortSignal }) {

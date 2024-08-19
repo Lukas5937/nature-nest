@@ -8,6 +8,7 @@ export default {
         serif: ["Goblin One", "ui-serif", "serif"],
       },
       colors: {
+        text: "#5C5C6C",
         orange: "#F39237",
         blue: "#63c7fd",
         darkBlue: "#0E79B2",
