@@ -34,7 +34,7 @@ export default function CabinCard({
             <p>{country}</p>
           </div>
           <div>
-            <p className="text-2xl font-semibold text-green">${price}</p>
+            <p className="text-darkGreen text-2xl font-semibold">${price}</p>
             <p className="mt-[-4px] text-right font-light">/day</p>
           </div>
         </div>

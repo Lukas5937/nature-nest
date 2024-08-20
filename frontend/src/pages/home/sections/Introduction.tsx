@@ -2,7 +2,7 @@ import Cabin from "../../../assets/home/Introduction.svg"
 
 export default function Introduction() {
   return (
-    <section className="bg-green py-16">
+    <section className="bg-darkGreen py-16">
       <div className="mx-auto grid w-11/12 max-w-screen-xl gap-16 px-4 md:grid-cols-2">
         <div className="flex items-center justify-center">
           <img

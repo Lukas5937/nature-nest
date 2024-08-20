@@ -4,6 +4,7 @@ import ContextProviders from "./context/ContextProviders"
 import Navigation from "./Navigation"
 import ErrorPage from "./ErrorPage"
 import Home from "./pages/home/Home"
+import CabinsNavigation from "./pages/cabins/CabinsNavigation"
 import Cabins from "./pages/cabins/Cabins"
 import CabinDetails from "./pages/cabinDetails/CabinDetails"
 import CabinDetailsDescription from "./pages/cabinDetails/components/CabinDetailsDescription"
@@ -17,13 +18,19 @@ function App() {
       errorElement: <ErrorPage />,
       children: [
         { path: "", element: <Home /> },
-        { path: "cabins", element: <Cabins /> },
         {
-          path: "cabins/:cabinId",
-          element: <CabinDetails />,
+          path: "cabins",
+          element: <CabinsNavigation />,
           children: [
-            { path: "", element: <CabinDetailsDescription /> },
-            { path: "map", element: <CabinDetailsMap /> },
+            { path: "", element: <Cabins /> },
+            {
+              path: ":cabinId",
+              element: <CabinDetails />,
+              children: [
+                { path: "", element: <CabinDetailsDescription /> },
+                { path: "map", element: <CabinDetailsMap /> },
+              ],
+            },
           ],
         },
       ],

@@ -18,7 +18,7 @@ export default function WhatWeOffer() {
           <h3 className="mt-4 text-2xl font-light text-dark md:text-3xl lg:mt-0">
             Offbeat Destinations
           </h3>
-          <p className="mt-2 leading-7 text-green">
+          <p className="text-darkGreen mt-2 leading-7">
             Discover hidden gems away from the crowds. Our offbeat destinations
             offer an authentic escape into untouched landscapes where adventure
             awaits at every turn. Find serenity in secluded spots that promise
@@ -27,7 +27,7 @@ export default function WhatWeOffer() {
           <h3 className="mt-10 text-2xl font-light text-dark md:text-3xl">
             Comfort Meets Rustic Charm
           </h3>
-          <p className="mt-2 leading-7 text-green">
+          <p className="text-darkGreen mt-2 leading-7">
             Experience the perfect blend of modern comforts and rustic elegance.
             Each cabin is thoughtfully designed with cozy interiors and stylish
             amenities, ensuring you enjoy a comfortable stay while being
@@ -36,7 +36,7 @@ export default function WhatWeOffer() {
           <h3 className="mt-10 text-2xl font-light text-dark md:text-3xl">
             Tailored Adventure Experiences
           </h3>
-          <p className="mt-2 leading-7 text-green">
+          <p className="text-darkGreen mt-2 leading-7">
             From guided hikes to wildlife spotting, we offer a range of curated
             activities to enhance your stay. Whether you're seeking thrilling
             adventures or tranquil moments of reflection, our bespoke
