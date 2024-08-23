@@ -79,6 +79,27 @@ export type SignUpUser = {
   passwordConfirmation: string
 }
 
+export async function loginUser(userData: LoginUser) {
+  const response = await fetch(`http://localhost:4000/api/v1/users/login`, {
+    method: "POST",
+    body: JSON.stringify(userData),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+
+  if (!response.ok) {
+    const error: FetchError = {
+      message: "An error occurred while creating user login.",
+      code: response.status,
+      info: await response.json(),
+    }
+    throw error
+  }
+  const responseData = await response.json()
+  return responseData
+}
+
 export async function createNewUser(userData: SignUpUser) {
   const response = await fetch(`http://localhost:4000/api/v1/users/signup`, {
     method: "POST",
@@ -105,25 +126,4 @@ export async function createNewUser(userData: SignUpUser) {
 export type LoginUser = {
   email: string
   password: string
-}
-
-export async function loginUser(userData: LoginUser) {
-  const response = await fetch(`http://localhost:4000/api/v1/users/login`, {
-    method: "POST",
-    body: JSON.stringify(userData),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
-
-  if (!response.ok) {
-    const error: FetchError = {
-      message: "An error occurred while creating user login.",
-      code: response.status,
-      info: await response.json(),
-    }
-    throw error
-  }
-  const responseData = await response.json()
-  return responseData
 }
