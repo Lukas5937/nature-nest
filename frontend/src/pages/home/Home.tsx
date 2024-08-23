@@ -1,7 +1,7 @@
-import Header from "./sections/Header";
-import Introduction from "./sections/Introduction";
-import WhatWeOffer from "./sections/WhatWeOffer";
-import ExploreOurSelection from "./sections/ExploreOurSelection";
+import Header from "./sections/Header"
+import Introduction from "./sections/Introduction"
+import WhatWeOffer from "./sections/WhatWeOffer"
+import ExploreOurSelection from "./sections/ExploreOurSelection"
 
 export default function Home() {
   return (
@@ -13,5 +13,5 @@ export default function Home() {
         <ExploreOurSelection />
       </main>
     </>
-  );
+  )
 }

@@ -1,6 +1,9 @@
-import { type FetchError } from "../http"
+import { type FetchError } from "../util/http"
 
-export default function FetchErrorBox({ error }: { error: FetchError }) {
+export default function FetchErrorBox({ error }: { error: FetchError | null }) {
+  if (!error) {
+    return null
+  }
   const info = error.info as { message?: string }
   return (
     <div className="error-box">

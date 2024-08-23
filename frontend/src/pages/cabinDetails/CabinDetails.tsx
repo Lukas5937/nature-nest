@@ -1,8 +1,8 @@
 import { useState } from "react"
 import { useParams, NavLink, Outlet } from "react-router-dom"
 import { useQuery } from "@tanstack/react-query"
-import { fetchCabin } from "../../http"
-import { type Cabin, type FetchError } from "../../http"
+import { fetchCabin } from "../../util/http"
+import { type Cabin, type FetchError } from "../../util/http"
 import FetchErrorBox from "../../UI/FetchErrorBox"
 
 import Forest from "../../assets/home/Forest.jpg"

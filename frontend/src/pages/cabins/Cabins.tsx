@@ -1,6 +1,6 @@
 import { useOutletContext } from "react-router-dom"
 
-import { type Cabin, type FetchError } from "../../http"
+import { type Cabin, type FetchError } from "../../util/http"
 
 import CabinCard from "./components/CabinCard"
 import { CircularProgress } from "@mui/material"
@@ -13,7 +13,7 @@ export default function Cabins() {
       data: Cabin[]
       isPending: boolean
       isError: boolean
-      error: FetchError | null
+      error: FetchError
       displayedCabins: Cabin[]
     }>()
 

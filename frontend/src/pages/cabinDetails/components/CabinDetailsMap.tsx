@@ -1,7 +1,7 @@
 import { useRef, useEffect } from "react"
 import { useOutletContext } from "react-router-dom"
 import { Loader } from "@googlemaps/js-api-loader"
-import { type Coordinates } from "../../../http"
+import { type Coordinates } from "../../../util/http"
 
 type CabinDetailsMapContext = {
   coordinates: Coordinates

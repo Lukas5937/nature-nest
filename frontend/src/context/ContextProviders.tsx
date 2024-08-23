@@ -1,6 +1,7 @@
 import { type ReactNode } from "react"
 import { QueryClientProvider } from "@tanstack/react-query"
-import { queryClient } from "../http"
+import { queryClient } from "../util/http"
+import LoginContextProvider from "./LoginContext"
 
 type ContextProvidersProps = {
   children: ReactNode
@@ -8,6 +9,8 @@ type ContextProvidersProps = {
 
 export default function ContextProviders({ children }: ContextProvidersProps) {
   return (
-    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+    <QueryClientProvider client={queryClient}>
+      <LoginContextProvider>{children}</LoginContextProvider>
+    </QueryClientProvider>
   )
 }

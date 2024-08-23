@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { type Cabin } from "../../../http"
+import { type Cabin } from "../../../util/http"
 
 export default function CabinCard({
   cabin,

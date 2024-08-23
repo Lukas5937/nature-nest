@@ -9,6 +9,9 @@ import Cabins from "./pages/cabins/Cabins"
 import CabinDetails from "./pages/cabinDetails/CabinDetails"
 import CabinDetailsDescription from "./pages/cabinDetails/components/CabinDetailsDescription"
 import CabinDetailsMap from "./pages/cabinDetails/components/CabinDetailsMap"
+import Authentication from "./pages/authentication/Authentication"
+import Bookings from "./pages/bookings/Bookings"
+import Logout from "./pages/authentication/Logout"
 
 function App() {
   const router = createBrowserRouter([
@@ -33,6 +36,9 @@ function App() {
             },
           ],
         },
+        { path: "auth", element: <Authentication /> },
+        { path: "logout", element: <Logout /> },
+        { path: "bookings", element: <Bookings /> },
       ],
     },
   ])

@@ -72,3 +72,58 @@ export async function fetchCabin({
 
   return cabin
 }
+
+export type SignUpUser = {
+  email: string
+  password: string
+  passwordConfirmation: string
+}
+
+export async function createNewUser(userData: SignUpUser) {
+  const response = await fetch(`http://localhost:4000/api/v1/users/signup`, {
+    method: "POST",
+    body: JSON.stringify(userData),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+
+  if (!response.ok) {
+    const error: FetchError = {
+      message: "An error occurred while creating a new account.",
+      code: response.status,
+      info: await response.json(),
+    }
+    throw error
+  }
+
+  const responseData = await response.json()
+
+  return responseData
+}
+
+export type LoginUser = {
+  email: string
+  password: string
+}
+
+export async function loginUser(userData: LoginUser) {
+  const response = await fetch(`http://localhost:4000/api/v1/users/login`, {
+    method: "POST",
+    body: JSON.stringify(userData),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+
+  if (!response.ok) {
+    const error: FetchError = {
+      message: "An error occurred while creating user login.",
+      code: response.status,
+      info: await response.json(),
+    }
+    throw error
+  }
+  const responseData = await response.json()
+  return responseData
+}

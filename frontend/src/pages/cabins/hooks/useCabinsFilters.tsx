@@ -1,5 +1,5 @@
 import { useEffect, useState, type ChangeEvent } from "react"
-import { type Cabin } from "../../../http"
+import { type Cabin } from "../../../util/http"
 import useCabinsFetch from "./useCabinsFetch"
 
 export type SortMethods = "name" | "priceLow" | "priceHigh" | "popularity"
