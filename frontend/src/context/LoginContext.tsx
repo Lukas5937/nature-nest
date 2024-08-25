@@ -19,6 +19,8 @@ type LoginContextValue = {
   user: User | null
   login: (userData: LoginResponse) => void
   logout: () => void
+  serverError: string
+  changeServerError: (message: string) => void
 }
 
 export const LoginContext = createContext<LoginContextValue>({
@@ -26,6 +28,8 @@ export const LoginContext = createContext<LoginContextValue>({
   user: null,
   login: () => {},
   logout: () => {},
+  serverError: "",
+  changeServerError: () => {},
 })
 
 export default function LoginContextProvider({
@@ -33,6 +37,7 @@ export default function LoginContextProvider({
 }: LoginContextProviderProps) {
   const [token, setToken] = useState<string | null>(null)
   const [user, setUser] = useState<User | null>(null)
+  const [serverError, setServerError] = useState("")
 
   function login(userData: LoginResponse) {
     setToken(userData.token)
@@ -41,6 +46,7 @@ export default function LoginContextProvider({
       email: userData.email,
       bookings: userData.bookings,
     })
+    setServerError("")
     localStorage.setItem("userData", JSON.stringify(userData))
   }
 
@@ -58,6 +64,10 @@ export default function LoginContextProvider({
     }
   }, [])
 
-  const value = { token, user, login, logout }
+  function changeServerError(message: string) {
+    setServerError(message)
+  }
+
+  const value = { token, user, login, logout, serverError, changeServerError }
   return <LoginContext.Provider value={value}>{children}</LoginContext.Provider>
 }

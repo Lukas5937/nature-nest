@@ -1,9 +1,11 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
 import { useParams, NavLink, Outlet } from "react-router-dom"
 import { useQuery } from "@tanstack/react-query"
 import { fetchCabin } from "../../util/http"
 import { type Cabin, type FetchError } from "../../util/http"
 import FetchErrorBox from "../../UI/FetchErrorBox"
+import { ModalContext } from "../../context/ModalContext"
+import { LoginContext } from "../../context/LoginContext"
 
 import Forest from "../../assets/home/Forest.jpg"
 import Waterfall from "../../assets/home/Waterfall.jpg"
@@ -11,6 +13,9 @@ import WhatWeOffer from "../../assets/home/WhatWeOffer.jpg"
 import WhisperingPinesCabin from "../../assets/WhisperingPinesCabin.jpeg"
 
 import CircularProgress from "@mui/material/CircularProgress"
+import Button from "../../UI/Button"
+import LoginFirstModal from "./components/LoginFirstModal"
+import BookingConfirmationModal from "./components/BookingConfirmationModal"
 
 export default function CabinDetails() {
   const { cabinId } = useParams()
@@ -30,6 +35,8 @@ export default function CabinDetails() {
       </button>
     </li>
   ))
+  const { token } = useContext(LoginContext)
+  const { showLoginFirst, showBookingConfirmation } = useContext(ModalContext)
 
   const { data, isPending, isError, error } = useQuery<Cabin, FetchError>({
     queryKey: ["cabins", cabinId],
@@ -56,14 +63,29 @@ export default function CabinDetails() {
     content = (
       <main>
         <div className="mx-auto flex w-11/12 max-w-screen-xl gap-8">
-          <div className="w-1/2">
-            <img className="h-96 w-full object-cover" src={largeImage} alt="" />
+          <div className="flex w-1/2 flex-col items-start">
+            <Button to=".." type="link" style="back">
+              Back
+            </Button>
+            <img
+              className="mt-4 h-96 w-full object-cover"
+              src={largeImage}
+              alt=""
+            />
             <ul className="grid grid-cols-4">{smallImageButtons}</ul>
           </div>
           <div className="flex w-1/2 flex-col gap-8">
             <div className="flex">
-              <h1>{name}</h1>
-              <p>{price}</p>
+              <div className="flex gap-4">
+                <h1>{name}</h1>
+                <p>{price}</p>
+                <Button
+                  handleClick={token ? showBookingConfirmation : showLoginFirst}
+                  type="button"
+                >
+                  Book now
+                </Button>
+              </div>
             </div>
             <p>{address}</p>
             <nav className="flex gap-8">
@@ -88,6 +110,8 @@ export default function CabinDetails() {
             <Outlet context={data} />
           </div>
         </div>
+        <LoginFirstModal />
+        <BookingConfirmationModal />
       </main>
     )
   }

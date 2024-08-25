@@ -1,13 +1,15 @@
 import { type ReactNode } from "react"
 import { Link } from "react-router-dom"
+import Back from "../assets/back.svg"
 
 type BaseButtonProps = {
-  color?: "magenta" | "green"
+  style?: "magenta" | "green" | "back" | "modal"
   children: ReactNode
 }
 
 type ButtonProps = BaseButtonProps & {
   type: "button"
+  handleClick?: () => void
 }
 
 type LinkProps = BaseButtonProps & {
@@ -18,30 +20,46 @@ type LinkProps = BaseButtonProps & {
 type ButtonComponentProps = ButtonProps | LinkProps
 
 export default function Button(props: ButtonComponentProps) {
-  const { type, color, children } = props
+  const { type, children, style } = props
+
+  let classes =
+    "hover:bg-neutral-500 shadow-grayButton rounded border-2 border-light bg-neutral-400 px-8 py-4 text-light"
+
+  if (style === "magenta") {
+    classes = "hover:bg-magentaHover rounded bg-magenta px-8 py-4 text-light"
+  }
+  if (style === "green") {
+    classes =
+      "hover:shadow-greenButton hover:bg-greenHover rounded bg-green px-8 py-4 text-light"
+  }
+
+  if (style === "modal") {
+    classes = classes =
+      "rounded-md  bg-white px-4 border py-2 shadow-sm text-darkGreen"
+  }
 
   if (type === "button") {
+    const { handleClick } = props as ButtonProps
     return (
-      <button className="hover:bg-grey-500 shadow-grayButton rounded border-2 border-light bg-gray-400 px-8 py-4 text-light">
+      <button onClick={handleClick} className={classes}>
         {children}
       </button>
     )
   }
-  let styles =
-    "hover:bg-neutral-500 shadow-grayButton rounded border-2 border-light bg-neutral-400 px-8 py-4 text-light"
-
-  if (color === "magenta") {
-    styles = "hover:bg-magentaHover rounded bg-magenta px-8 py-4 text-light"
-  }
-  if (color === "green") {
-    styles =
-      "hover:shadow-greenButton hover:bg-greenHover rounded bg-green px-8 py-4 text-light"
-  }
 
   if (type === "link") {
     const { to } = props as LinkProps
+    if (style === "back") {
+      classes = "flex items-center gap-4"
+      return (
+        <Link className={classes} to={to}>
+          <img className="h-auto w-8" src={Back} alt="back" />
+          {children}
+        </Link>
+      )
+    }
     return (
-      <Link className={styles} to={to}>
+      <Link className={classes} to={to}>
         {children}
       </Link>
     )

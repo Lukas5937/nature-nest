@@ -14,7 +14,7 @@ export default function useLoginUser() {
     throw new Error("LoginContext is not available.")
   }
 
-  const { login } = loginContext
+  const { login, changeServerError } = loginContext
 
   const navigate = useNavigate()
 
@@ -29,7 +29,7 @@ export default function useLoginUser() {
       navigate("/")
     },
     onError: (error: FetchError) => {
-      console.error(error.message)
+      changeServerError(error.message)
     },
   })
 

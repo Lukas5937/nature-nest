@@ -88,19 +88,21 @@ export async function loginUser(userData: LoginUser) {
     },
   })
 
+  const responseData = await response.json()
+
   if (!response.ok) {
     const error: FetchError = {
-      message: "An error occurred while creating user login.",
+      message:
+        responseData.message || "An error occurred while creating user login.",
       code: response.status,
-      info: await response.json(),
+      info: responseData,
     }
     throw error
   }
-  const responseData = await response.json()
   return responseData
 }
 
-export async function createNewUser(userData: SignUpUser) {
+export async function signUpUser(userData: SignUpUser) {
   const response = await fetch(`http://localhost:4000/api/v1/users/signup`, {
     method: "POST",
     body: JSON.stringify(userData),
@@ -109,16 +111,18 @@ export async function createNewUser(userData: SignUpUser) {
     },
   })
 
+  const responseData = await response.json()
+
   if (!response.ok) {
     const error: FetchError = {
-      message: "An error occurred while creating a new account.",
+      message:
+        responseData.message ||
+        "An error occurred while creating a new account.",
       code: response.status,
-      info: await response.json(),
+      info: responseData,
     }
     throw error
   }
-
-  const responseData = await response.json()
 
   return responseData
 }

@@ -11,7 +11,7 @@ export default function ExploreOurSelection() {
         cozy, rustic cabins nestled in the heart of nature. Whether you're
         seeking tranquility or excitement, we've got the perfect cabin for you.
       </p>
-      <Button type="link" to="/cabins">
+      <Button type="link" style="magenta" to="/cabins">
         Book Your Cabin
       </Button>
     </section>
