@@ -1,6 +1,7 @@
-import { useEffect, useState, type ChangeEvent } from "react"
+import { useEffect, useState, useContext, type ChangeEvent } from "react"
 import { type Cabin } from "../../../util/http"
 import useCabinsFetch from "./useCabinsFetch"
+import { BookingContext } from "../../../context/BookingContext"
 
 export type SortMethods = "name" | "priceLow" | "priceHigh" | "popularity"
 
@@ -13,6 +14,8 @@ export default function useCabinsFilters() {
   const [searchTerm, setSearchTerm] = useState("")
   const [displayedCabins, setDisplayedCabins] = useState<Cabin[]>(cabins || [])
   const [activeSortMethod, setActiveSortMethod] = useState<SortMethods>("name")
+
+  const { addBookingPeriod } = useContext(BookingContext)
 
   function createDatesArray(checkIn: string, checkOut: string) {
     const datesArray: string[] = []
@@ -64,6 +67,7 @@ export default function useCabinsFilters() {
       }
 
       const dateRange = createDatesArray(checkInDate, checkOutDate)
+      addBookingPeriod(dateRange)
 
       let vacantCabins = sortedCabins
       if (dateRange.length > 0) {
@@ -81,7 +85,14 @@ export default function useCabinsFilters() {
       )
       setDisplayedCabins(filteredCabins)
     }
-  }, [cabins, activeSortMethod, checkInDate, checkOutDate, searchTerm])
+  }, [
+    cabins,
+    activeSortMethod,
+    checkInDate,
+    checkOutDate,
+    searchTerm,
+    addBookingPeriod,
+  ])
 
   return {
     displayedCabins,

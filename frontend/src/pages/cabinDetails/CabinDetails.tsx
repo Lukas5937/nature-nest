@@ -1,17 +1,14 @@
-import { useState, useContext } from "react"
+import { useContext } from "react"
 import { useParams, NavLink, Outlet } from "react-router-dom"
 import { useQuery } from "@tanstack/react-query"
-import { fetchCabin } from "../../util/http"
-import { type Cabin, type FetchError } from "../../util/http"
-import FetchErrorBox from "../../UI/FetchErrorBox"
+
 import { ModalContext } from "../../context/ModalContext"
 import { LoginContext } from "../../context/LoginContext"
+import { fetchCabin } from "../../util/http"
+import { type Cabin, type FetchError } from "../../util/http"
 
-import Forest from "../../assets/home/Forest.jpg"
-import Waterfall from "../../assets/home/Waterfall.jpg"
-import WhatWeOffer from "../../assets/home/WhatWeOffer.jpg"
-import WhisperingPinesCabin from "../../assets/WhisperingPinesCabin.jpeg"
-
+import CabinImages from "./components/CabinImages"
+import FetchErrorBox from "../../UI/FetchErrorBox"
 import CircularProgress from "@mui/material/CircularProgress"
 import Button from "../../UI/Button"
 import LoginFirstModal from "./components/LoginFirstModal"
@@ -20,21 +17,6 @@ import BookingConfirmationModal from "./components/BookingConfirmationModal"
 export default function CabinDetails() {
   const { cabinId } = useParams()
 
-  const images = [Forest, Waterfall, WhatWeOffer, WhisperingPinesCabin]
-  const [largeImage, setLargeImage] = useState(images[0])
-  const smallImages = images.filter((image) => image !== largeImage)
-
-  function handleImageClick(image: string) {
-    setLargeImage(image)
-  }
-
-  const smallImageButtons = smallImages.map((image) => (
-    <li key={image}>
-      <button className="h-32 w-full" onClick={() => handleImageClick(image)}>
-        <img className="h-full w-full object-cover" src={image} alt="" />
-      </button>
-    </li>
-  ))
   const { token } = useContext(LoginContext)
   const { showLoginFirst, showBookingConfirmation } = useContext(ModalContext)
 
@@ -61,18 +43,13 @@ export default function CabinDetails() {
   if (data) {
     const { name, address, price } = data
     content = (
-      <main>
+      <>
         <div className="mx-auto flex w-11/12 max-w-screen-xl gap-8">
           <div className="flex w-1/2 flex-col items-start">
             <Button to=".." type="link" style="back">
               Back
             </Button>
-            <img
-              className="mt-4 h-96 w-full object-cover"
-              src={largeImage}
-              alt=""
-            />
-            <ul className="grid grid-cols-4">{smallImageButtons}</ul>
+            <CabinImages />
           </div>
           <div className="flex w-1/2 flex-col gap-8">
             <div className="flex">
@@ -111,10 +88,10 @@ export default function CabinDetails() {
           </div>
         </div>
         <LoginFirstModal />
-        <BookingConfirmationModal />
-      </main>
+        <BookingConfirmationModal name={name} price={price} />
+      </>
     )
   }
 
-  return <h2>{content}</h2>
+  return <main>{content}</main>
 }
