@@ -104,6 +104,7 @@ export const signupUser = async (req, res, next) => {
       "Your passwords don't match. Please confirm your password.",
       400
     )
+    return next(error)
   }
 
   let hashedPassword
