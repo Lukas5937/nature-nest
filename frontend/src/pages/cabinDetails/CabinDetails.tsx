@@ -88,7 +88,7 @@ export default function CabinDetails() {
           </div>
         </div>
         <LoginFirstModal />
-        <BookingConfirmationModal name={name} price={price} />
+        <BookingConfirmationModal cabin={data} price={price} />
       </>
     )
   }

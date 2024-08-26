@@ -73,10 +73,9 @@ export async function fetchCabin({
   return cabin
 }
 
-export type SignUpUser = {
+export type LoginUser = {
   email: string
   password: string
-  passwordConfirmation: string
 }
 
 export async function loginUser(userData: LoginUser) {
@@ -102,6 +101,12 @@ export async function loginUser(userData: LoginUser) {
   return responseData
 }
 
+export type SignUpUser = {
+  email: string
+  password: string
+  passwordConfirmation: string
+}
+
 export async function signUpUser(userData: SignUpUser) {
   const response = await fetch(`http://localhost:4000/api/v1/users/signup`, {
     method: "POST",
@@ -123,11 +128,45 @@ export async function signUpUser(userData: SignUpUser) {
     }
     throw error
   }
-
   return responseData
 }
 
-export type LoginUser = {
-  email: string
-  password: string
+type BookingData = {
+  date: string
+  cabinId: string
+  bookingPeriod: string[]
+  totalPrice: number
+}
+
+export type CreateBookingProps = {
+  bookingData: BookingData
+  token: string
+}
+
+export async function createBooking({
+  bookingData,
+  token,
+}: CreateBookingProps) {
+  const response = await fetch(`http://localhost:4000/api/v1/bookings/new`, {
+    method: "POST",
+    body: JSON.stringify(bookingData),
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token,
+    },
+  })
+  const responseData = await response.json()
+
+  if (!response.ok) {
+    const error: FetchError = {
+      message:
+        responseData.message ||
+        "An error occurred while confirming your booking.",
+      code: response.status,
+      info: responseData,
+    }
+    throw error
+  }
+  const { newBooking } = responseData
+  return newBooking
 }

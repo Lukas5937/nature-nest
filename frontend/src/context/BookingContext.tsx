@@ -5,27 +5,27 @@ type BookingContextProviderProps = {
 }
 
 type BookingContextValue = {
-  date: string | null
+  bookingDate: string | null
   bookingPeriod: string[] | null
   totalPrice: number | null
   addBookingPeriod: (period: string[]) => void
   addTotalPrice: (price: number) => void
-  //   cabin: string | null
+  addBookingDate: () => void
 }
 
 export const BookingContext = createContext<BookingContextValue>({
-  date: null,
+  bookingDate: null,
   bookingPeriod: null,
   totalPrice: null,
   addBookingPeriod: () => {},
   addTotalPrice: () => {},
-  //   cabin: null,
+  addBookingDate: () => {},
 })
 
 export default function BookingContextProvider({
   children,
 }: BookingContextProviderProps) {
-  const [date, setDate] = useState<string | null>(null)
+  const [bookingDate, setBookingDate] = useState<string | null>(null)
   const [bookingPeriod, setBookingPeriod] = useState<string[] | null>(null)
   const [totalPrice, setTotalPrice] = useState<number | null>(null)
 
@@ -35,7 +35,7 @@ export default function BookingContextProvider({
     const day = ("0" + today.getDate()).slice(-2)
     const year = today.getFullYear()
     const todayString = `${month}/${day}/${year}`
-    setDate(todayString)
+    setBookingDate(todayString)
   }
 
   const addBookingPeriod = useCallback((period: string[]) => {
@@ -47,7 +47,7 @@ export default function BookingContextProvider({
   }
 
   const value = {
-    date,
+    bookingDate,
     bookingPeriod,
     totalPrice,
     addBookingDate,

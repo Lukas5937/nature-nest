@@ -1,21 +1,34 @@
 import { useContext } from "react"
 import { ModalContext } from "../../../context/ModalContext"
 import { BookingContext } from "../../../context/BookingContext"
+import { LoginContext } from "../../../context/LoginContext"
+
+import useCreateBooking from "../hooks/useCreateBooking"
+import { type Cabin } from "../../../util/http"
+
 import Modal from "../../../UI/Modal"
 import Button from "../../../UI/Button"
+import FetchErrorBox from "../../../UI/FetchErrorBox"
+import CircularProgress from "@mui/material/CircularProgress"
 
 type BookingConfirmationModalProps = {
-  name: string
+  cabin: Cabin
   price: number
 }
 
 export default function BookingConfirmationModal({
-  name,
+  cabin,
   price,
 }: BookingConfirmationModalProps) {
+  const { token } = useContext(LoginContext)
   const { activeModal, hideModal } = useContext(ModalContext)
-  const { bookingPeriod, totalPrice, addTotalPrice } =
-    useContext(BookingContext)
+  const {
+    bookingDate,
+    addBookingDate,
+    bookingPeriod,
+    totalPrice,
+    addTotalPrice,
+  } = useContext(BookingContext)
 
   let bookingPeriodStart
   let bookingPeriodEnd
@@ -23,6 +36,24 @@ export default function BookingConfirmationModal({
     bookingPeriodStart = bookingPeriod[0]
     bookingPeriodEnd = bookingPeriod[bookingPeriod.length - 1]
     addTotalPrice(price * (bookingPeriod.length - 1))
+    addBookingDate()
+  }
+
+  const { mutate, isPending, isError, error } = useCreateBooking()
+
+  function createBooking() {
+    if (!bookingDate || !bookingPeriod || !totalPrice || !token) {
+      console.error("Booking information is missing.")
+      return
+    }
+
+    const bookingData = {
+      date: bookingDate,
+      cabinId: cabin._id,
+      bookingPeriod,
+      totalPrice,
+    }
+    mutate({ bookingData, token })
   }
 
   return (
@@ -32,7 +63,7 @@ export default function BookingConfirmationModal({
         Are you sure you want to complete this booking? Please review your
         details before proceeding. Press "Confirm" to finalize your booking.
       </p>
-      <p>Cabin: {name}</p>
+      <p>Cabin: {cabin.name}</p>
       <p>
         Booking period: {bookingPeriodStart} - {bookingPeriodEnd}
       </p>
@@ -41,10 +72,11 @@ export default function BookingConfirmationModal({
         <Button type="button" style="modal" handleClick={hideModal}>
           Cancel
         </Button>
-        <Button to="/auth" style="modal" type="link">
-          Confirm booking
+        <Button style="modal" type="button" handleClick={createBooking}>
+          {isPending ? <CircularProgress /> : "Confirm booking"}
         </Button>
       </div>
+      {isError && <FetchErrorBox error={error} />}
     </Modal>
   )
 }
