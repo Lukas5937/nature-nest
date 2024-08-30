@@ -1,14 +1,17 @@
-import { type CabinsInputProps } from "./SearchInput"
+import { ChangeEvent } from "react"
 
-export default function DateInput({ handleChange }: CabinsInputProps) {
+type DateInputProps = {
+  handleChange: (event: ChangeEvent<HTMLInputElement>) => void
+  value: string
+}
+
+export default function DateInput({ handleChange, value }: DateInputProps) {
   return (
     <input
-      placeholder="check in date"
-      className="text-text w-72 rounded-3xl bg-[#EDF2EF] px-8 py-4"
-      type="text"
+      className="w-72 rounded-3xl bg-[#EDF2EF] px-8 py-4 text-text"
+      type="date"
+      value={value}
       onChange={handleChange}
-      onFocus={(e) => (e.target.type = "date")}
-      onBlur={(e) => (e.target.type = "text")}
     />
   )
 }

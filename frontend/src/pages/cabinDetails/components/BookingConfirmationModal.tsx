@@ -1,4 +1,4 @@
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import { ModalContext } from "../../../context/ModalContext"
 import { BookingContext } from "../../../context/BookingContext"
 import { LoginContext } from "../../../context/LoginContext"
@@ -22,6 +22,7 @@ export default function BookingConfirmationModal({
 }: BookingConfirmationModalProps) {
   const { token } = useContext(LoginContext)
   const { activeModal, hideModal } = useContext(ModalContext)
+
   const {
     bookingDate,
     addBookingDate,
@@ -30,16 +31,21 @@ export default function BookingConfirmationModal({
     addTotalPrice,
   } = useContext(BookingContext)
 
+  const { mutate, isPending, isError, error } = useCreateBooking()
+
   let bookingPeriodStart
   let bookingPeriodEnd
   if (bookingPeriod) {
     bookingPeriodStart = bookingPeriod[0]
     bookingPeriodEnd = bookingPeriod[bookingPeriod.length - 1]
-    addTotalPrice(price * (bookingPeriod.length - 1))
-    addBookingDate()
   }
 
-  const { mutate, isPending, isError, error } = useCreateBooking()
+  useEffect(() => {
+    if (bookingPeriod) {
+      addTotalPrice(price * (bookingPeriod.length - 1))
+      addBookingDate()
+    }
+  }, [price, bookingPeriod, addBookingDate, addTotalPrice])
 
   function createBooking() {
     if (!bookingDate || !bookingPeriod || !totalPrice || !token) {
@@ -57,7 +63,7 @@ export default function BookingConfirmationModal({
   }
 
   return (
-    <Modal open={activeModal === "bookingConfirmation"}>
+    <Modal open={activeModal === "bookingConfirmation"} onClose={hideModal}>
       <h2 className="text-lg font-bold text-green">Confirm Your Booking</h2>
       <p className="mt-4 font-light text-gray-500">
         Are you sure you want to complete this booking? Please review your

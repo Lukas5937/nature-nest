@@ -9,9 +9,7 @@ export default function Navigation() {
   if (!loginContext) {
     throw new Error("LoginContext is not available.")
   }
-  const { token, user } = loginContext
-
-  console.log(user)
+  const { token } = loginContext
 
   return (
     <div className="bg-light">

@@ -5,16 +5,21 @@ import useCabinsFetch from "./hooks/useCabinsFetch"
 import DateInput from "./components/DateInput"
 import SearchInput from "./components/SearchInput"
 import SortButtons from "./components/SortButtons"
+import Button from "../../UI/Button"
 
 export default function CabinsNavigation() {
   const { data, isPending, isError, error } = useCabinsFetch()
   const {
     displayedCabins,
     activeSortMethod,
+    checkInDate,
+    checkOutDate,
     setActiveSortMethod,
     handleSearchValue,
     handleCheckInValue,
     handleCheckOutValue,
+    handleSetBookingPeriod,
+    handleResetBookingPeriod,
   } = useCabinsFilters()
 
   const outletContext = {
@@ -30,8 +35,14 @@ export default function CabinsNavigation() {
       <section className="sticky top-8 flex h-max flex-col gap-12">
         <SearchInput handleChange={handleSearchValue} />
         <div className="flex flex-col gap-4">
-          <DateInput handleChange={handleCheckInValue} />
-          <DateInput handleChange={handleCheckOutValue} />
+          <DateInput handleChange={handleCheckInValue} value={checkInDate} />
+          <DateInput handleChange={handleCheckOutValue} value={checkOutDate} />
+          <Button type="button" handleClick={handleSetBookingPeriod}>
+            Check availability
+          </Button>
+          <Button type="button" handleClick={handleResetBookingPeriod}>
+            Reset
+          </Button>
         </div>
         <SortButtons
           activeSortMethod={activeSortMethod}

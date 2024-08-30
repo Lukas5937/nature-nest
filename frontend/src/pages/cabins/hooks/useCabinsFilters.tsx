@@ -15,23 +15,14 @@ export default function useCabinsFilters() {
   const [displayedCabins, setDisplayedCabins] = useState<Cabin[]>(cabins || [])
   const [activeSortMethod, setActiveSortMethod] = useState<SortMethods>("name")
 
-  const { addBookingPeriod } = useContext(BookingContext)
+  const { bookingPeriod, addBookingPeriod } = useContext(BookingContext)
 
-  function createDatesArray(checkIn: string, checkOut: string) {
-    const datesArray: string[] = []
-    for (
-      let i = new Date(checkIn);
-      i <= new Date(checkOut);
-      i.setDate(i.getDate() + 1)
-    ) {
-      const date = new Date(i)
-      const month = ("0" + (date.getMonth() + 1)).slice(-2)
-      const day = ("0" + date.getDate()).slice(-2)
-      const year = date.getFullYear()
-      const dateString = `${month}/${day}/${year}`
-      datesArray.push(dateString)
-    }
-    return datesArray
+  function formatDate(dateString: string | Date) {
+    const date = new Date(dateString)
+    const month = ("0" + (date.getMonth() + 1)).slice(-2)
+    const day = ("0" + date.getDate()).slice(-2)
+    const year = date.getFullYear()
+    return `${month}/${day}/${year}`
   }
 
   function handleCheckInValue(event: ChangeEvent<HTMLInputElement>) {
@@ -40,6 +31,30 @@ export default function useCabinsFilters() {
 
   function handleCheckOutValue(event: ChangeEvent<HTMLInputElement>) {
     setCheckOutDate(event.currentTarget.value)
+  }
+
+  function createDatesArray(checkIn: string, checkOut: string) {
+    const datesArray: string[] = []
+    for (
+      let i = new Date(checkIn);
+      i <= new Date(checkOut);
+      i.setDate(i.getDate() + 1)
+    ) {
+      const dateString = formatDate(i)
+      datesArray.push(dateString)
+    }
+    return datesArray
+  }
+
+  function handleSetBookingPeriod() {
+    const dateRange = createDatesArray(checkInDate, checkOutDate)
+    addBookingPeriod(dateRange)
+  }
+
+  function handleResetBookingPeriod() {
+    setCheckInDate("")
+    setCheckOutDate("")
+    addBookingPeriod([])
   }
 
   function handleSearchValue(event: ChangeEvent<HTMLInputElement>) {
@@ -66,13 +81,11 @@ export default function useCabinsFilters() {
         )
       }
 
-      const dateRange = createDatesArray(checkInDate, checkOutDate)
-      addBookingPeriod(dateRange)
-
       let vacantCabins = sortedCabins
-      if (dateRange.length > 0) {
+      if (bookingPeriod) {
         vacantCabins = sortedCabins.filter(
-          (cabin) => !cabin.occupancy.some((date) => dateRange.includes(date)),
+          (cabin) =>
+            !cabin.occupancy.some((date) => bookingPeriod.includes(date)),
         )
       }
 
@@ -91,15 +104,19 @@ export default function useCabinsFilters() {
     checkInDate,
     checkOutDate,
     searchTerm,
-    addBookingPeriod,
+    bookingPeriod,
   ])
 
   return {
     displayedCabins,
     activeSortMethod,
+    checkInDate,
+    checkOutDate,
     setActiveSortMethod,
     handleSearchValue,
     handleCheckInValue,
     handleCheckOutValue,
+    handleSetBookingPeriod,
+    handleResetBookingPeriod,
   }
 }

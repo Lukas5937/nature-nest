@@ -1,6 +1,6 @@
 import { type ChangeEvent } from "react"
 
-export type CabinsInputProps = {
+type CabinsInputProps = {
   handleChange: (event: ChangeEvent<HTMLInputElement>) => void
 }
 
