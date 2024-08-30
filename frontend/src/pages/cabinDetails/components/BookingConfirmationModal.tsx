@@ -23,13 +23,8 @@ export default function BookingConfirmationModal({
   const { token } = useContext(LoginContext)
   const { activeModal, hideModal } = useContext(ModalContext)
 
-  const {
-    bookingDate,
-    addBookingDate,
-    bookingPeriod,
-    totalPrice,
-    addTotalPrice,
-  } = useContext(BookingContext)
+  const { today, bookingPeriod, totalPrice, addTotalPrice } =
+    useContext(BookingContext)
 
   const { mutate, isPending, isError, error } = useCreateBooking()
 
@@ -43,18 +38,17 @@ export default function BookingConfirmationModal({
   useEffect(() => {
     if (bookingPeriod) {
       addTotalPrice(price * (bookingPeriod.length - 1))
-      addBookingDate()
     }
-  }, [price, bookingPeriod, addBookingDate, addTotalPrice])
+  }, [price, bookingPeriod, addTotalPrice])
 
   function createBooking() {
-    if (!bookingDate || !bookingPeriod || !totalPrice || !token) {
+    if (!today || !bookingPeriod || !totalPrice || !token) {
       console.error("Booking information is missing.")
       return
     }
 
     const bookingData = {
-      date: bookingDate,
+      date: today,
       cabinId: cabin._id,
       bookingPeriod,
       totalPrice,
@@ -70,6 +64,7 @@ export default function BookingConfirmationModal({
         details before proceeding. Press "Confirm" to finalize your booking.
       </p>
       <p>Cabin: {cabin.name}</p>
+      <p>Booking date: {today}</p>
       <p>
         Booking period: {bookingPeriodStart} - {bookingPeriodEnd}
       </p>

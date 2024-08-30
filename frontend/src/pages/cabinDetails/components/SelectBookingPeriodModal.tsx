@@ -6,8 +6,6 @@ import Button from "../../../UI/Button"
 export default function SelectBookingPeriodModal() {
   const { activeModal, hideModal } = useContext(ModalContext)
 
-  console.log(activeModal)
-
   return (
     <Modal open={activeModal === "selectBookingPeriod"} onClose={hideModal}>
       <h2 className="text-lg font-bold text-magenta">

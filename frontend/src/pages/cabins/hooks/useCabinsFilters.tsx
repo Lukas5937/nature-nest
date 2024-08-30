@@ -14,8 +14,9 @@ export default function useCabinsFilters() {
   const [searchTerm, setSearchTerm] = useState("")
   const [displayedCabins, setDisplayedCabins] = useState<Cabin[]>(cabins || [])
   const [activeSortMethod, setActiveSortMethod] = useState<SortMethods>("name")
+  const [invalidDatesMessage, setInvalidDatesMessage] = useState("")
 
-  const { bookingPeriod, addBookingPeriod } = useContext(BookingContext)
+  const { today, bookingPeriod, addBookingPeriod } = useContext(BookingContext)
 
   function formatDate(dateString: string | Date) {
     const date = new Date(dateString)
@@ -46,9 +47,38 @@ export default function useCabinsFilters() {
     return datesArray
   }
 
+  function validateDates() {
+    const formattedCheckIn = formatDate(checkInDate)
+    const formattedCheckOut = formatDate(checkOutDate)
+    if (today) {
+      if (!checkInDate) {
+        return console.log("Please select a check in date.")
+      }
+      if (new Date(formattedCheckIn) < new Date(today)) {
+        return setInvalidDatesMessage(
+          "The selected check-in date cannot be in the past. Please choose a valid date.",
+        )
+      }
+      if (!checkOutDate) {
+        return setInvalidDatesMessage("Please select a check out date.")
+      }
+      if (new Date(formattedCheckOut) < new Date(today)) {
+        return setInvalidDatesMessage(
+          "The selected check-out date cannot be in the past. Please choose a valid date.",
+        )
+      }
+      if (new Date(formattedCheckOut) <= new Date(formattedCheckIn)) {
+        return setInvalidDatesMessage(
+          "The checkout date must be after the check-in date. Please choose a valid date.",
+        )
+      }
+    }
+  }
+
   function handleSetBookingPeriod() {
+    validateDates()
     const dateRange = createDatesArray(checkInDate, checkOutDate)
-    addBookingPeriod(dateRange)
+    return addBookingPeriod(dateRange)
   }
 
   function handleResetBookingPeriod() {
@@ -112,6 +142,7 @@ export default function useCabinsFilters() {
     activeSortMethod,
     checkInDate,
     checkOutDate,
+    invalidDatesMessage,
     setActiveSortMethod,
     handleSearchValue,
     handleCheckInValue,

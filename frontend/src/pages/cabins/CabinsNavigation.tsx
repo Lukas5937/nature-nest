@@ -14,6 +14,7 @@ export default function CabinsNavigation() {
     activeSortMethod,
     checkInDate,
     checkOutDate,
+    invalidDatesMessage,
     setActiveSortMethod,
     handleSearchValue,
     handleCheckInValue,
@@ -37,6 +38,7 @@ export default function CabinsNavigation() {
         <div className="flex flex-col gap-4">
           <DateInput handleChange={handleCheckInValue} value={checkInDate} />
           <DateInput handleChange={handleCheckOutValue} value={checkOutDate} />
+          {invalidDatesMessage && <p>{invalidDatesMessage}</p>}
           <Button type="button" handleClick={handleSetBookingPeriod}>
             Check availability
           </Button>
