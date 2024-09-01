@@ -11,4 +11,4 @@ const cabinSchema = new Schema({
   occupancy: { type: Array, required: true },
 })
 
-export const Cabin = mongoose.model('cabin', cabinSchema)
+export const Cabin = mongoose.model('Cabin', cabinSchema)

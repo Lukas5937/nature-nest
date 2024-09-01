@@ -1,11 +1,16 @@
 import express from 'express'
 import { checkAuth } from '../util/checkAuth.js'
 import { check } from 'express-validator'
-import { createBooking } from '../controllers/bookingsController.js'
+import {
+  createBooking,
+  getBookings,
+} from '../controllers/bookingsController.js'
 
 const router = express.Router()
 
 router.use(checkAuth)
+
+router.get('/:userId', getBookings)
 
 router.post(
   '/new',

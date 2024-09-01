@@ -2,6 +2,7 @@ import { validationResult } from 'express-validator'
 import { Booking } from '../models/bookingsModel.js'
 import { User } from '../models/usersModel.js'
 import { Cabin } from '../models/cabinsModel.js'
+import { fetchBookingsData } from '../util/fetchBookingsData.js'
 import HttpError from '../models/httpError.js'
 
 export const createBooking = async (req, res, next) => {
@@ -64,5 +65,15 @@ export const createBooking = async (req, res, next) => {
       500
     )
     return next(error)
+  }
+}
+
+export const getBookings = async (req, res, next) => {
+  const userId = req.params.userId
+  try {
+    const bookings = await fetchBookingsData(userId)
+    res.status(200).json({ bookings })
+  } catch (err) {
+    next(err)
   }
 }

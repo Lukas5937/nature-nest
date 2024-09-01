@@ -7,19 +7,11 @@ export async function fetchCabinData(cabinId) {
   try {
     cabin = await Cabin.findById(cabinId)
   } catch (err) {
-    const error = new HttpError(
-      'Something went wrong, could not find cabin data.',
-      500
-    )
-    return next(error)
+    throw new HttpError('Something went wrong, could not find cabin data.', 500)
   }
 
   if (!cabin) {
-    const error = new HttpError(
-      'Could not find cabin data, please try again.',
-      404
-    )
-    return next(error)
+    throw new HttpError('Could not find cabin data, please try again.', 404)
   }
   return cabin
 }

@@ -10,4 +10,4 @@ const bookingSchema = new Schema({
   totalPrice: { type: Number, required: true },
 })
 
-export const Booking = mongoose.model('booking', bookingSchema)
+export const Booking = mongoose.model('Booking', bookingSchema)

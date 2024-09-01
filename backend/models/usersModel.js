@@ -8,4 +8,4 @@ const userSchema = new Schema({
   bookings: { type: Array, required: true },
 })
 
-export const User = mongoose.model('user', userSchema)
+export const User = mongoose.model('User', userSchema)

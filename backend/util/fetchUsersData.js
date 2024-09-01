@@ -7,19 +7,11 @@ export async function fetchUsersData() {
   try {
     users = await User.find()
   } catch (err) {
-    const error = new HttpError(
-      'Something went wrong, could not find user data.',
-      500
-    )
-    return next(error)
+    throw new HttpError('Something went wrong, could not find user data.', 500)
   }
 
   if (!users) {
-    const error = new HttpError(
-      'Could not find user data, please try again.',
-      404
-    )
-    return next(error)
+    throw new HttpError('Could not find user data, please try again.', 404)
   }
   return users
 }
