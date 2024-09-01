@@ -1,4 +1,10 @@
-import { createContext, useEffect, useState, type ReactNode } from "react"
+import {
+  createContext,
+  useCallback,
+  useEffect,
+  useState,
+  type ReactNode,
+} from "react"
 
 type LoginContextProviderProps = {
   children: ReactNode
@@ -67,12 +73,12 @@ export default function LoginContextProvider({
     )
   }
 
-  function logout() {
+  const logout = useCallback(() => {
     setToken("")
     setUser(null)
     setTokenExpirationDate(null)
     localStorage.removeItem("userData")
-  }
+  }, [])
 
   useEffect(() => {
     const storedData = localStorage.getItem("userData")

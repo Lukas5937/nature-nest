@@ -170,3 +170,50 @@ export async function createBooking({
   const { newBooking } = responseData
   return newBooking
 }
+
+export type BookingsResponseData = {
+  id: string
+  user: string
+  date: string
+  cabin: Cabin
+  bookingPeriod: string[]
+  totalPrice: number
+}
+
+export async function fetchBookings({
+  signal,
+  userId,
+  token,
+}: {
+  signal?: AbortSignal
+  userId: string | undefined
+  token: string
+}) {
+  if (!userId) {
+    throw new Error("User ID is required.")
+  }
+
+  const url = `http://localhost:4000/api/v1/bookings/${userId}`
+
+  const response = await fetch(url, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    signal,
+  })
+
+  if (!response.ok) {
+    const error: FetchError = {
+      message: "An error occurred while fetching your bookings.",
+      code: response.status,
+      info: await response.json(),
+    }
+    throw error
+  }
+
+  const { bookings }: { bookings: BookingsResponseData[] } =
+    await response.json()
+
+  return bookings
+}
