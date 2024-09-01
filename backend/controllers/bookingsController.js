@@ -74,6 +74,6 @@ export const getBookings = async (req, res, next) => {
     const bookings = await fetchBookingsData(userId)
     res.status(200).json({ bookings })
   } catch (err) {
-    next(err)
+    return next(err)
   }
 }
