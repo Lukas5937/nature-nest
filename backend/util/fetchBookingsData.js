@@ -7,7 +7,7 @@ export async function fetchBookingsData(userId) {
   try {
     bookings = await Booking.find({ user: userId }).populate('cabin')
 
-    if (!bookings || bookings.length === 0) {
+    if (!bookings) {
       throw new HttpError(
         'Could not find your bookings, please try again.',
         404

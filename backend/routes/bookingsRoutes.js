@@ -4,6 +4,7 @@ import { check } from 'express-validator'
 import {
   createBooking,
   getBookings,
+  deleteBooking,
 } from '../controllers/bookingsController.js'
 
 const router = express.Router()
@@ -22,5 +23,7 @@ router.post(
   ],
   createBooking
 )
+
+router.delete('/delete', [check('bookingId').not().isEmpty()], deleteBooking)
 
 export default router
