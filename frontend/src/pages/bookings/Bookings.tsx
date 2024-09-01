@@ -6,15 +6,18 @@ import {
   type BookingsResponseData,
   type FetchError,
 } from "../../util/http"
+import useDeleteBooking from "./hooks/useDeleteBooking"
+
+import Button from "../../UI/Button"
 
 export default function Bookings() {
   const { user, token } = useContext(LoginContext)
 
   const {
     data: bookings,
-    isPending,
-    isError,
-    error,
+    isPending: bookingsIsPending,
+    isError: bookingsIsError,
+    error: bookingsError,
   } = useQuery<BookingsResponseData[], FetchError>({
     queryKey: ["bookings"],
     queryFn: ({ signal }) => {
@@ -26,6 +29,19 @@ export default function Bookings() {
     enabled: user !== null && token !== null,
   })
 
+  const {
+    mutate,
+    isPending: deleteIsPending,
+    isError: deleteIsError,
+    error: deleteError,
+  } = useDeleteBooking()
+
+  function handleDelete(bookingId: string) {
+    if (token) {
+      mutate({ bookingId, token })
+    }
+  }
+
   const bookingCards = bookings?.map((booking) => (
     <li key={booking._id}>
       <div className="mt-4 bg-lightGreen p-4">
@@ -36,18 +52,25 @@ export default function Bookings() {
           {booking.bookingPeriod[0]} -{" "}
           {booking.bookingPeriod[booking.bookingPeriod.length - 1]}
         </p>
+        <Button
+          style="magenta"
+          type="button"
+          handleClick={() => handleDelete(booking._id)}
+        >
+          Delete
+        </Button>
       </div>
     </li>
   ))
 
-  console.log(isPending)
-  console.log(isError)
-  console.log(error)
+  console.log(bookingsIsPending, deleteIsPending)
+  console.log(bookingsIsError, deleteIsError)
+  console.log(bookingsError, deleteError)
 
   return (
     <>
       <h1>These are your bookings</h1>
-      <ul>{bookingCards}</ul>
+      {bookings && <ul>{bookingCards}</ul>}
     </>
   )
 }

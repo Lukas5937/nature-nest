@@ -131,7 +131,7 @@ export async function signUpUser(userData: SignUpUser) {
   return responseData
 }
 
-type BookingData = {
+export type BookingData = {
   date: string
   cabinId: string
   bookingPeriod: string[]
@@ -216,4 +216,34 @@ export async function fetchBookings({
     await response.json()
 
   return bookings
+}
+
+export type DeleteBookingProps = {
+  bookingId: string
+  token: string
+}
+
+export async function deleteBooking({ bookingId, token }: DeleteBookingProps) {
+  const response = await fetch(`http://localhost:4000/api/v1/bookings/delete`, {
+    method: "DELETE",
+    body: JSON.stringify({ bookingId }),
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token,
+    },
+  })
+  const responseData = await response.json()
+
+  if (!response.ok) {
+    const error: FetchError = {
+      message:
+        responseData.message ||
+        "An error occurred while deleting your booking.",
+      code: response.status,
+      info: responseData,
+    }
+    throw error
+  }
+  const { message } = responseData
+  return message
 }
