@@ -22,7 +22,7 @@ export default function Bookings() {
     queryKey: ["bookings"],
     queryFn: ({ signal }) => {
       if (user && token) {
-        return fetchBookings({ signal, userId: user.id, token })
+        return fetchBookings({ signal, token })
       }
       throw new Error("We couldn't find a user with the provided user id.")
     },

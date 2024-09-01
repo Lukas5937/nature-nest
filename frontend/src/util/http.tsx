@@ -182,18 +182,12 @@ export type BookingsResponseData = {
 
 export async function fetchBookings({
   signal,
-  userId,
   token,
 }: {
   signal?: AbortSignal
-  userId: string | undefined
   token: string
 }) {
-  if (!userId) {
-    throw new Error("User ID is required.")
-  }
-
-  const url = `http://localhost:4000/api/v1/bookings/${userId}`
+  const url = `http://localhost:4000/api/v1/bookings`
 
   const response = await fetch(url, {
     method: "GET",
