@@ -11,7 +11,7 @@ const router = express.Router()
 
 router.use(checkAuth)
 
-router.get('/:userId', getBookings)
+router.get('/', getBookings)
 
 router.post(
   '/new',

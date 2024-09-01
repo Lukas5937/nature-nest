@@ -69,7 +69,7 @@ export const createBooking = async (req, res, next) => {
 }
 
 export const getBookings = async (req, res, next) => {
-  const userId = req.params.userId
+  const { userId } = req.userData
   try {
     const bookings = await fetchBookingsData(userId)
     res.status(200).json({ bookings })
