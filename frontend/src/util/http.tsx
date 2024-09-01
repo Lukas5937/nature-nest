@@ -172,7 +172,7 @@ export async function createBooking({
 }
 
 export type BookingsResponseData = {
-  id: string
+  _id: string
   user: string
   date: string
   cabin: Cabin

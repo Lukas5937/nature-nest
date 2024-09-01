@@ -9,7 +9,6 @@ import {
 
 export default function Bookings() {
   const { user, token } = useContext(LoginContext)
-  console.log(user)
 
   const {
     data: bookings,
@@ -28,15 +27,17 @@ export default function Bookings() {
   })
 
   const bookingCards = bookings?.map((booking) => (
-    <div className="mt-4 bg-lightGreen p-4">
-      <h2>{booking.cabin.name}</h2>
-      <p>{booking.date}</p>
-      <p>{booking.totalPrice}</p>
-      <p>
-        {booking.bookingPeriod[0]} -{" "}
-        {booking.bookingPeriod[booking.bookingPeriod.length - 1]}
-      </p>
-    </div>
+    <li key={booking._id}>
+      <div className="mt-4 bg-lightGreen p-4">
+        <h2>{booking.cabin.name}</h2>
+        <p>{booking.date}</p>
+        <p>{booking.totalPrice}</p>
+        <p>
+          {booking.bookingPeriod[0]} -{" "}
+          {booking.bookingPeriod[booking.bookingPeriod.length - 1]}
+        </p>
+      </div>
+    </li>
   ))
 
   console.log(isPending)
@@ -46,7 +47,7 @@ export default function Bookings() {
   return (
     <>
       <h1>These are your bookings</h1>
-      {bookingCards}
+      <ul>{bookingCards}</ul>
     </>
   )
 }
