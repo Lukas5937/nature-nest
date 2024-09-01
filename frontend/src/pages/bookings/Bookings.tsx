@@ -9,6 +9,8 @@ import {
 import useDeleteBooking from "./hooks/useDeleteBooking"
 
 import Button from "../../UI/Button"
+import CircularProgress from "@mui/material/CircularProgress"
+import FetchErrorBox from "../../UI/FetchErrorBox"
 
 export default function Bookings() {
   const { user, token } = useContext(LoginContext)
@@ -57,20 +59,22 @@ export default function Bookings() {
           type="button"
           handleClick={() => handleDelete(booking._id)}
         >
-          Delete
+          {deleteIsPending ? <CircularProgress /> : "Delete"}
         </Button>
       </div>
     </li>
   ))
 
-  console.log(bookingsIsPending, deleteIsPending)
-  console.log(bookingsIsError, deleteIsError)
-  console.log(bookingsError, deleteError)
-
   return (
     <>
       <h1>These are your bookings</h1>
-      {bookings && <ul>{bookingCards}</ul>}
+      {bookings && (
+        <ul>
+          {deleteIsError ? <FetchErrorBox error={deleteError} /> : bookingCards}
+        </ul>
+      )}
+      {bookingsIsPending && <CircularProgress />}
+      {bookingsIsError && <FetchErrorBox error={bookingsError} />}
     </>
   )
 }
