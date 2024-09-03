@@ -22,68 +22,59 @@ export default function SortButtons({
     setActiveSortMethod("popularity")
   }
 
+  const styles = "relative rounded-xl border border-gray-200 px-2 py-1"
+  const activeStyles =
+    "relative rounded-xl px-2 py-1 outline outline-2 outline-green"
+
   return (
-    <div className="flex flex-col gap-4">
-      <div className="relative">
-        <label htmlFor="name">
-          <div className="w-full rounded-3xl bg-[#F8F1F4] px-8 py-2">
-            <p className="">Name</p>
-          </div>
-        </label>
+    <fieldset className="grid grid-cols-2 gap-2">
+      <legend className="mb-2 ml-2">Sort options</legend>
+      <label className={activeSortMethod === "name" ? activeStyles : styles}>
+        Name
         <input
-          className="absolute opacity-0"
+          className="absolute bottom-0 left-0 right-0 top-0 opacity-0"
           onChange={handleNameClick}
-          id="name"
           type="radio"
           name="sortInput"
           checked={activeSortMethod === "name"}
         />
-      </div>
-      <div className="relative">
-        <label htmlFor="priceLow">
-          <div className="w-full rounded-3xl bg-[#F8F1F4] px-8 py-2">
-            <p className="">Price: low to high</p>
-          </div>
-        </label>
+      </label>
+      <label
+        className={activeSortMethod === "popularity" ? activeStyles : styles}
+      >
+        Popularity
         <input
-          className="absolute opacity-0"
-          onChange={handlePriceLowClick}
-          id="priceLow"
-          type="radio"
-          name="sortInput"
-          checked={activeSortMethod === "priceLow"}
-        />
-      </div>
-      <div className="relative">
-        <label htmlFor="priceHigh">
-          <div className="w-full rounded-3xl bg-[#F8F1F4] px-8 py-2">
-            <p className="">Price: high to low</p>
-          </div>
-        </label>
-        <input
-          className="absolute opacity-0"
-          onChange={handlePriceHighClick}
-          id="priceHigh"
-          type="radio"
-          name="sortInput"
-          checked={activeSortMethod === "priceHigh"}
-        />
-      </div>
-      <div className="relative">
-        <label htmlFor="popularity">
-          <div className="w-full rounded-3xl bg-[#F8F1F4] px-8 py-2">
-            <p className="">Popularity</p>
-          </div>
-        </label>
-        <input
-          className="absolute opacity-0"
+          className="absolute bottom-0 left-0 right-0 top-0 opacity-0"
           onChange={handlePopularityClick}
-          id="popularity"
           type="radio"
           name="sortInput"
           checked={activeSortMethod === "popularity"}
         />
-      </div>
-    </div>
+      </label>
+      <label
+        className={activeSortMethod === "priceLow" ? activeStyles : styles}
+      >
+        Price ↑
+        <input
+          className="absolute bottom-0 left-0 right-0 top-0 opacity-0"
+          onChange={handlePriceLowClick}
+          type="radio"
+          name="sortInput"
+          checked={activeSortMethod === "priceLow"}
+        />
+      </label>
+      <label
+        className={activeSortMethod === "priceHigh" ? activeStyles : styles}
+      >
+        Price ↓
+        <input
+          className="absolute bottom-0 left-0 right-0 top-0 opacity-0"
+          onChange={handlePriceHighClick}
+          type="radio"
+          name="sortInput"
+          checked={activeSortMethod === "priceHigh"}
+        />
+      </label>
+    </fieldset>
   )
 }

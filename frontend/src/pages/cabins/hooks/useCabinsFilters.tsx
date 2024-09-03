@@ -52,7 +52,7 @@ export default function useCabinsFilters() {
     const formattedCheckOut = formatDate(checkOutDate)
     if (today) {
       if (!checkInDate) {
-        return console.log("Please select a check in date.")
+        return setInvalidDatesMessage("Please select a check in date.")
       }
       if (new Date(formattedCheckIn) < new Date(today)) {
         return setInvalidDatesMessage(
@@ -72,6 +72,7 @@ export default function useCabinsFilters() {
           "The checkout date must be after the check-in date. Please choose a valid date.",
         )
       }
+      return setInvalidDatesMessage("")
     }
   }
 

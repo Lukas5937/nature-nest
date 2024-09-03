@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import Back from "../assets/back.svg"
 
 type BaseButtonProps = {
-  style?: "magenta" | "green" | "back" | "modal"
+  style?: "magenta" | "green" | "back" | "modal" | "date" | "dateReset"
   children: ReactNode
 }
 
@@ -36,6 +36,16 @@ export default function Button(props: ButtonComponentProps) {
   if (style === "modal") {
     classes = classes =
       "rounded-md  bg-white px-4 border py-2 shadow-sm text-darkGreen"
+  }
+
+  if (style === "date") {
+    classes = classes =
+      "rounded bg-inherit px-2 border border-gray-300 py-1 text-darkGreen hover:bg-emerald-50 hover:outline hover:outline-2 hover:outline-green"
+  }
+
+  if (style === "dateReset") {
+    classes = classes =
+      "rounded bg-inherit px-2 border border-gray-300 py-1 text-darkGreen hover:bg-stone-100 hover:outline hover:outline-2 hover:outline-magenta"
   }
 
   if (type === "button") {

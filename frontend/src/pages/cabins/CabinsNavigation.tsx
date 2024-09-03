@@ -32,19 +32,40 @@ export default function CabinsNavigation() {
   }
 
   return (
-    <main className="mx-auto my-8 grid w-11/12 max-w-screen-xl grid-cols-[max-content_1fr] gap-4">
+    <main className="mx-auto my-8 grid w-11/12 max-w-screen-xl grid-cols-[max-content_1fr] gap-12">
       <section className="sticky top-8 flex h-max flex-col gap-12">
         <SearchInput handleChange={handleSearchValue} />
-        <div className="flex flex-col gap-4">
-          <DateInput handleChange={handleCheckInValue} value={checkInDate} />
-          <DateInput handleChange={handleCheckOutValue} value={checkOutDate} />
+        <div>
+          <fieldset className="flex flex-col gap-4 border-0">
+            <legend className="mb-2 ml-2">Select your booking dates</legend>
+            <DateInput
+              handleChange={handleCheckInValue}
+              value={checkInDate}
+              placeholder="check-in"
+            />
+            <DateInput
+              handleChange={handleCheckOutValue}
+              value={checkOutDate}
+              placeholder="check-out"
+            />
+          </fieldset>
           {invalidDatesMessage && <p>{invalidDatesMessage}</p>}
-          <Button type="button" handleClick={handleSetBookingPeriod}>
-            Check availability
-          </Button>
-          <Button type="button" handleClick={handleResetBookingPeriod}>
-            Reset
-          </Button>
+          <div className="mt-4 flex gap-2">
+            <Button
+              type="button"
+              style="dateReset"
+              handleClick={handleResetBookingPeriod}
+            >
+              Reset
+            </Button>
+            <Button
+              type="button"
+              style="date"
+              handleClick={handleSetBookingPeriod}
+            >
+              Check availability
+            </Button>
+          </div>
         </div>
         <SortButtons
           activeSortMethod={activeSortMethod}

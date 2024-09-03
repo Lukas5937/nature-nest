@@ -7,7 +7,7 @@ type CabinsInputProps = {
 export default function SearchInput({ handleChange }: CabinsInputProps) {
   return (
     <input
-      className="w-72 rounded-3xl bg-[#F8F1F4] px-8 py-4"
+      className="border-1 w-64 rounded-xl border border-gray-200 bg-inherit px-4 py-4 placeholder:text-text focus:outline focus:outline-2 focus:outline-green"
       id="cabinsSearch"
       type="search"
       placeholder="Search destinations"

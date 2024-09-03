@@ -3,7 +3,7 @@ import Accordion from "../components/Accordion"
 
 export default function WhatWeOffer() {
   return (
-    <section className="mx-auto my-16 w-11/12 max-w-screen-2xl rounded-3xl bg-lightMagenta px-12 py-12">
+    <section className="bg-bgMagenta mx-auto my-16 w-11/12 max-w-screen-2xl rounded-3xl px-12 py-12">
       <div className="mt-8 grid gap-4 lg:mt-12 lg:grid-cols-2 lg:gap-12">
         <div className="max-h-72 overflow-hidden rounded-3xl sm:max-h-96 lg:max-h-[36rem]">
           <img
