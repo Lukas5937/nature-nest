@@ -61,46 +61,61 @@ export default function CabinDetails() {
     return (
       <main>
         {data && (
-          <div className="mx-auto flex w-11/12 max-w-screen-xl gap-8">
-            <div className="flex w-1/2 flex-col items-start">
-              <Button to=".." type="link" style="back">
-                Back
-              </Button>
-              <CabinImages />
-            </div>
-            <div className="flex w-1/2 flex-col gap-8">
-              <div className="flex">
-                <div className="flex gap-4">
-                  <h1>{name}</h1>
-                  <p>{price}</p>
-                  <Button handleClick={handleBookNow} type="button">
+          <>
+            <Button to=".." type="link" style="back">
+              Back
+            </Button>
+            <div className="mt-4 grid grid-cols-2 grid-rows-[auto_1fr] gap-x-6 overflow-hidden xl:grid-cols-[60%_1fr] xl:gap-x-12">
+              <div className="col-span-1 row-span-full">
+                <CabinImages />
+              </div>
+              <div>
+                <h1 className="text-lg font-bold">{name}</h1>
+                <p>{address}</p>
+              </div>
+              <div className="mr-4 mt-8 flex flex-col justify-end">
+                <div className="flex items-center justify-end gap-4">
+                  <div>
+                    <p className="text-xl font-semibold">${price}</p>
+                    <p className="mt-[-4px] text-right font-light">/day</p>
+                  </div>
+                  <Button
+                    handleClick={handleBookNow}
+                    type="button"
+                    style="booking"
+                  >
                     Book now
                   </Button>
                 </div>
+                <div className="mt-4 h-1/2">
+                  <nav className="mb-4 flex gap-8">
+                    <NavLink
+                      className={({ isActive }) =>
+                        isActive ? "border-b-2 border-stone-300" : ""
+                      }
+                      end
+                      preventScrollReset
+                      to=""
+                    >
+                      Details
+                    </NavLink>
+                    <NavLink
+                      className={({ isActive }) =>
+                        isActive ? "border-b-2 border-stone-300" : ""
+                      }
+                      preventScrollReset
+                      to="map"
+                    >
+                      Map
+                    </NavLink>
+                  </nav>
+                  <div className="min-h-[200px] flex-grow">
+                    <Outlet context={data} />
+                  </div>
+                </div>
               </div>
-              <p>{address}</p>
-              <nav className="flex gap-8">
-                <NavLink
-                  className={({ isActive }) =>
-                    isActive ? "border-b-2 border-stone-300" : ""
-                  }
-                  end
-                  to=""
-                >
-                  Details
-                </NavLink>
-                <NavLink
-                  className={({ isActive }) =>
-                    isActive ? "border-b-2 border-stone-300" : ""
-                  }
-                  to="map"
-                >
-                  Maps
-                </NavLink>
-              </nav>
-              <Outlet context={data} />
             </div>
-          </div>
+          </>
         )}
         <LoginFirstModal />
         <SelectBookingPeriodModal />

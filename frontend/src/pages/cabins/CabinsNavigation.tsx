@@ -32,25 +32,30 @@ export default function CabinsNavigation() {
   }
 
   return (
-    <main className="mx-auto my-8 grid w-11/12 max-w-screen-xl grid-cols-[max-content_1fr] gap-12">
-      <section className="sticky top-8 flex h-max flex-col gap-12">
-        <SearchInput handleChange={handleSearchValue} />
+    <main className="mx-auto grid w-11/12 max-w-screen-xl gap-2 lg:my-8 lg:grid-cols-[1fr_auto] lg:gap-12">
+      <section className="grid grid-rows-[1fr_auto] items-start lg:sticky lg:top-8 lg:block lg:h-max">
         <div>
-          <fieldset className="flex flex-col gap-4 border-0">
+          <fieldset className="flex flex-col items-start gap-4 border-0 lg:mt-4">
             <legend className="mb-2 ml-2">Select your booking dates</legend>
-            <DateInput
-              handleChange={handleCheckInValue}
-              value={checkInDate}
-              placeholder="check-in"
-            />
-            <DateInput
-              handleChange={handleCheckOutValue}
-              value={checkOutDate}
-              placeholder="check-out"
-            />
+            <div className="xs:flex-row flex flex-col gap-2 lg:flex-col lg:gap-4">
+              <DateInput
+                handleChange={handleCheckInValue}
+                value={checkInDate}
+                placeholder="check-in"
+              />
+              <DateInput
+                handleChange={handleCheckOutValue}
+                value={checkOutDate}
+                placeholder="check-out"
+              />
+            </div>
           </fieldset>
-          {invalidDatesMessage && <p>{invalidDatesMessage}</p>}
-          <div className="mt-4 flex gap-2">
+          {invalidDatesMessage && (
+            <div className="ml-2 mt-2 text-sm text-magenta sm:text-base">
+              {invalidDatesMessage}
+            </div>
+          )}
+          <div className="mt-2 flex gap-2 lg:mt-4">
             <Button
               type="button"
               style="dateReset"
@@ -67,10 +72,13 @@ export default function CabinsNavigation() {
             </Button>
           </div>
         </div>
-        <SortButtons
-          activeSortMethod={activeSortMethod}
-          setActiveSortMethod={setActiveSortMethod}
-        />
+        <div className="mt-8 grid items-end justify-between md:flex md:flex-row lg:mt-0 lg:flex-col lg:items-stretch lg:gap-0">
+          <SortButtons
+            activeSortMethod={activeSortMethod}
+            setActiveSortMethod={setActiveSortMethod}
+          />
+          <SearchInput handleChange={handleSearchValue} />
+        </div>
       </section>
       <Outlet context={outletContext} />
     </main>

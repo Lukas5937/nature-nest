@@ -1,12 +1,13 @@
 import { useState } from "react"
 
-import Forest from "../../../assets/home/Forest.jpg"
-import Waterfall from "../../../assets/home/Waterfall.jpg"
-import WhatWeOffer from "../../../assets/home/WhatWeOffer.jpg"
-import WhisperingPinesCabin from "../../../assets/WhisperingPinesCabin.jpeg"
+import WhisperingPinesCabin from "../../../assets/cabin/WhisperingPinesCabin.jpeg"
+import Image2 from "../../../assets/cabin/Image2.jpeg"
+import Image3 from "../../../assets/cabin/Image3.jpeg"
+import Image4 from "../../../assets/cabin/Image4.jpeg"
+import Image5 from "../../../assets/cabin/Image5.jpeg"
 
 export default function CabinImages() {
-  const images = [Forest, Waterfall, WhatWeOffer, WhisperingPinesCabin]
+  const images = [WhisperingPinesCabin, Image2, Image3, Image4, Image5]
   const [largeImage, setLargeImage] = useState(images[0])
   const smallImages = images.filter((image) => image !== largeImage)
 
@@ -16,16 +17,16 @@ export default function CabinImages() {
 
   const smallImageButtons = smallImages.map((image) => (
     <li key={image}>
-      <button className="h-32 w-full" onClick={() => handleImageClick(image)}>
+      <button className="h-full w-full" onClick={() => handleImageClick(image)}>
         <img className="h-full w-full object-cover" src={image} alt="" />
       </button>
     </li>
   ))
 
   return (
-    <>
-      <img className="mt-4 h-96 w-full object-cover" src={largeImage} alt="" />
-      <ul className="grid grid-cols-4">{smallImageButtons}</ul>
-    </>
+    <div className="flex h-full flex-col gap-4">
+      <img className="h-full min-h-0 object-cover" src={largeImage} alt="" />
+      <ul className="mt-auto grid grid-cols-4 gap-2">{smallImageButtons}</ul>
+    </div>
   )
 }

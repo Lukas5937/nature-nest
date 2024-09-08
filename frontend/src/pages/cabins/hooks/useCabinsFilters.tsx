@@ -56,7 +56,7 @@ export default function useCabinsFilters() {
       }
       if (new Date(formattedCheckIn) < new Date(today)) {
         return setInvalidDatesMessage(
-          "The selected check-in date cannot be in the past. Please choose a valid date.",
+          "The selected check-in date cannot be in the past. Please choose a valid check-in date.",
         )
       }
       if (!checkOutDate) {
@@ -64,12 +64,12 @@ export default function useCabinsFilters() {
       }
       if (new Date(formattedCheckOut) < new Date(today)) {
         return setInvalidDatesMessage(
-          "The selected check-out date cannot be in the past. Please choose a valid date.",
+          "The selected check-out date cannot be in the past. Please choose a valid check-out date.",
         )
       }
       if (new Date(formattedCheckOut) <= new Date(formattedCheckIn)) {
         return setInvalidDatesMessage(
-          "The checkout date must be after the check-in date. Please choose a valid date.",
+          "The checkout date must be after the check-in date. Please choose a valid check-out date.",
         )
       }
       return setInvalidDatesMessage("")
@@ -85,6 +85,7 @@ export default function useCabinsFilters() {
   function handleResetBookingPeriod() {
     setCheckInDate("")
     setCheckOutDate("")
+    setInvalidDatesMessage("")
     addBookingPeriod([])
   }
 

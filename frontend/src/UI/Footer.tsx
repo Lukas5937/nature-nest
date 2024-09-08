@@ -6,7 +6,7 @@ import LinkedIn from "../assets/footer/LinkedIn.svg"
 
 export default function Footer() {
   return (
-    <footer className="rounded-t-2xl bg-darkGreen px-4 py-8">
+    <footer className="mt-20 rounded-t-2xl bg-darkGreen px-4 py-8">
       <p className="mb-4 text-center font-extralight text-light">
         Connect with us and stay updated on the latest destinations and offers.
       </p>

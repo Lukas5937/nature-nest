@@ -24,10 +24,10 @@ export default function SortButtons({
 
   const styles = "relative rounded-xl border border-gray-200 px-2 py-1"
   const activeStyles =
-    "relative rounded-xl px-2 py-1 outline outline-2 outline-green"
+    "relative rounded-xl border border-gray-200 px-2 py-1 outline outline-2 outline-green"
 
   return (
-    <fieldset className="grid grid-cols-2 gap-2">
+    <fieldset className="mt-8 flex gap-2 text-sm sm:text-base md:mt-0 lg:mt-12 lg:grid lg:grid-cols-2">
       <legend className="mb-2 ml-2">Sort options</legend>
       <label className={activeSortMethod === "name" ? activeStyles : styles}>
         Name

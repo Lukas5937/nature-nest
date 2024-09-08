@@ -5,7 +5,7 @@ import { type Cabin, type FetchError } from "../../util/http"
 import CabinCard from "./components/CabinCard"
 import { CircularProgress } from "@mui/material"
 import FetchErrorBox from "../../UI/FetchErrorBox"
-import WhisperingPinesCabin from "../../assets/WhisperingPinesCabin.jpeg"
+import WhisperingPinesCabin from "../../assets/cabin/WhisperingPinesCabin.jpeg"
 
 export default function Cabins() {
   const { data, isPending, isError, error, displayedCabins } =
@@ -35,7 +35,7 @@ export default function Cabins() {
         </p>
       )}
       {data && (
-        <ul className="grid gap-2 sm:grid-cols-2 md:grid-cols-3">
+        <ul className="grid gap-2 sm:grid-cols-2 xl:grid-cols-3">
           {displayedCabins.map((cabin) => (
             <li key={cabin._id}>
               <CabinCard cabin={cabin} img={WhisperingPinesCabin} />

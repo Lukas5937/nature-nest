@@ -25,6 +25,9 @@ export default {
         greenButton: "0 0 2px 4px #9AE4CE",
         grayButton: "0 0 0px 3px #9ca3af",
       },
+      screens: {
+        xs: "440px",
+      },
     },
   },
   plugins: [],
