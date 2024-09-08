@@ -1,14 +1,32 @@
+import { useRef } from "react"
 import Forest from "../../../assets/home/Forest.jpg"
 import Waterfall from "../../../assets/home/Waterfall.jpg"
 
+import { motion, useScroll, useTransform } from "framer-motion"
+
 export default function Header() {
+  const scrollRef = useRef(null)
+  const { scrollYProgress } = useScroll({
+    target: scrollRef,
+    offset: ["start end", "end start"],
+  })
+  const moveDown = useTransform(scrollYProgress, [0, 1], [-60, 60])
+  const moveUp = useTransform(scrollYProgress, [0, 1], [60, -30])
+  const scale = useTransform(scrollYProgress, [0, 1], [0.9, 1.2])
+
   return (
-    <header className="mx-auto w-11/12 max-w-screen-xl">
+    <header
+      ref={scrollRef}
+      className="relative mx-auto w-11/12 max-w-screen-xl"
+    >
       <div className="grid gap-4 pb-20 pt-8 md:min-h-screen md:grid-cols-3 md:pb-32">
         <div className="flex items-center justify-center rounded-3xl bg-dark py-8 md:col-span-2">
-          <h1 className="flex font-serif text-2xl text-light md:text-4xl lg:text-5xl">
+          <motion.h1
+            className="flex font-serif text-2xl text-light md:text-4xl lg:text-5xl"
+            style={{ y: moveDown, scale }}
+          >
             Adventurers
-          </h1>
+          </motion.h1>
         </div>
         <div className="max-h-48 overflow-hidden rounded-3xl md:max-h-full">
           <img
@@ -26,9 +44,12 @@ export default function Header() {
           />
         </div>
         <div className="row-start-3 flex items-center justify-center rounded-3xl bg-dark py-8 md:col-span-2 md:row-start-auto">
-          <h2 className="text-highlightBlue font-serif text-2xl md:text-4xl lg:text-5xl">
+          <motion.h2
+            className="text-highlightBlue font-serif text-2xl md:text-4xl lg:text-5xl"
+            style={{ y: moveUp, scale }}
+          >
             Travel Wild
-          </h2>
+          </motion.h2>
         </div>
       </div>
     </header>
