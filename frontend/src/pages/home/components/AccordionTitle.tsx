@@ -2,8 +2,8 @@ import { type ReactNode, useContext } from "react"
 import { AccordionContext } from "./Accordion"
 import { AccordionItemContext } from "./AccordionItem"
 
-import Plus from "../../../assets/home/Plus.svg"
-import Minus from "../../../assets/home/Minus.svg"
+import MinusIcon from "../../../assets/home/MinusIcon"
+import PlusIcon from "../../../assets/home/PlusIcon"
 
 export default function AccordionTitle({ children }: { children: ReactNode }) {
   const { openItem, toggleItem } = useContext(AccordionContext)
@@ -16,12 +16,10 @@ export default function AccordionTitle({ children }: { children: ReactNode }) {
       className="flex justify-between gap-4 border-b-2 py-8 hover:cursor-pointer"
       onClick={() => toggleItem(id)}
     >
-      <h3 className="text-xl font-light text-dark sm:text-2xl">{children}</h3>
-      <img
-        src={isOpen ? Minus : Plus}
-        alt="Open AccordionItem Button"
-        width="20px"
-      />
+      <h3 className="text-xl font-light text-light sm:text-2xl lg:text-dark">
+        {children}
+      </h3>
+      {isOpen ? <MinusIcon /> : <PlusIcon />}
     </div>
   )
 }

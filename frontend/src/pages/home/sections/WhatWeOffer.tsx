@@ -2,18 +2,20 @@ import Cabin from "../../../assets/home/WhatWeOffer.jpg"
 import Accordion from "../components/Accordion"
 
 export default function WhatWeOffer() {
+  "text-xl font-light text-dark sm:text-2xl"
   return (
-    <section className="bg-bgMagenta mx-auto my-16 w-11/12 max-w-screen-2xl rounded-3xl px-12 py-12">
-      <div className="mt-8 grid gap-4 lg:mt-12 lg:grid-cols-2 lg:gap-12">
-        <div className="max-h-72 overflow-hidden rounded-3xl sm:max-h-96 lg:max-h-[36rem]">
+    <section className="bg-bgMagenta">
+      <div className="grid grid-cols-1 grid-rows-1 gap-4 lg:grid-cols-2">
+        <div className="relative col-span-full row-span-full h-[600px] lg:col-span-1 lg:h-screen">
           <img
             className="h-full w-full object-cover"
             src={Cabin}
             alt="A wooden cabin in the mountains."
           />
+          <div className="absolute bottom-0 left-0 right-0 top-0 z-10 bg-[#7E727670] lg:hidden"></div>
         </div>
-        <div className="flex flex-col">
-          <h2 className="mt-8 font-serif text-2xl text-magenta sm:text-4xl">
+        <div className="relative z-20 col-span-full row-span-full mx-8 mt-16 flex flex-col text-light lg:col-span-1 lg:row-start-auto lg:mt-0 lg:py-32 lg:text-text">
+          <h2 className="font-serif text-2xl text-magenta sm:text-4xl">
             What we offer
           </h2>
           <Accordion>

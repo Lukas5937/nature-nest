@@ -15,7 +15,7 @@ export default function AccordionContent({
   let className = "hidden"
 
   if (isOpen) {
-    className = "mt-4 leading-7 text-darkGreen"
+    className = "mt-4 leading-7"
   }
 
   return <div className={className}>{children}</div>
