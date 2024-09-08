@@ -61,19 +61,19 @@ export default function CabinDetails() {
     return (
       <main>
         {data && (
-          <>
+          <div className="mt-8 lg:mt-0">
             <Button to=".." type="link" style="back">
               Back
             </Button>
-            <div className="mt-4 grid grid-cols-2 grid-rows-[auto_1fr] gap-x-6 overflow-hidden xl:grid-cols-[60%_1fr] xl:gap-x-12">
-              <div className="col-span-1 row-span-full">
+            <div className="mt-4 grid grid-rows-[auto_1fr] gap-x-6 md:grid-cols-2 xl:grid-cols-[60%_1fr] xl:gap-x-12">
+              <div className="col-span-1 row-start-2 mt-4 md:row-span-full md:mt-0">
                 <CabinImages />
               </div>
-              <div>
+              <div className="">
                 <h1 className="text-lg font-bold">{name}</h1>
                 <p>{address}</p>
               </div>
-              <div className="mr-4 mt-8 flex flex-col justify-end">
+              <div className="mt-8 flex flex-col justify-end">
                 <div className="flex items-center justify-end gap-4">
                   <div>
                     <p className="text-xl font-semibold">${price}</p>
@@ -87,7 +87,7 @@ export default function CabinDetails() {
                     Book now
                   </Button>
                 </div>
-                <div className="mt-4 h-1/2">
+                <div className="mt-4">
                   <nav className="mb-4 flex gap-8">
                     <NavLink
                       className={({ isActive }) =>
@@ -109,13 +109,13 @@ export default function CabinDetails() {
                       Map
                     </NavLink>
                   </nav>
-                  <div className="min-h-[200px] flex-grow">
+                  <div className="h-72">
                     <Outlet context={data} />
                   </div>
                 </div>
               </div>
             </div>
-          </>
+          </div>
         )}
         <LoginFirstModal />
         <SelectBookingPeriodModal />

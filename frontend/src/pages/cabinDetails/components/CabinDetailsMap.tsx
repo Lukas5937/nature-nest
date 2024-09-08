@@ -43,5 +43,5 @@ export default function CabinDetailsMap() {
       })
   }, [apiKey, coordinates, id])
 
-  return <div className="h-full w-full" ref={mapRef}></div>
+  return <div className="h-72 w-full" ref={mapRef}></div>
 }
