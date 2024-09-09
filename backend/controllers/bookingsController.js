@@ -27,6 +27,17 @@ export const createBooking = async (req, res, next) => {
       return next(error)
     }
 
+    const bookingPeriodUnavailable = bookingPeriod.some((date) =>
+      cabin.occupancy.includes(date)
+    )
+    if (bookingPeriodUnavailable) {
+      const error = new HttpError(
+        'The cabin is already booked for the requested period. Please select different dates or another cabin.',
+        409
+      )
+      return next(error)
+    }
+
     const newBooking = new Booking({
       user: userId,
       date,
