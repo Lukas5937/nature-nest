@@ -18,7 +18,7 @@ export default function LoginFirstModal() {
           Close
         </Button>
         <Button to="/auth?mode=login" style="modal" type="link">
-          Log In to Continue
+          Go to Login
         </Button>
       </div>
     </Modal>

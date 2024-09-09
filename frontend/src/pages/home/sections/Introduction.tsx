@@ -1,8 +1,19 @@
+import { useRef } from "react"
+import { motion, useScroll, useTransform } from "framer-motion"
+
 import Cabin from "../../../assets/home/Introduction.svg"
 
 export default function Introduction() {
+  const scrollRef = useRef(null)
+  const { scrollYProgress } = useScroll({
+    target: scrollRef,
+    offset: ["start end", "end start"],
+  })
+
+  const moveUp = useTransform(scrollYProgress, [0, 0.7], [70, 0])
+
   return (
-    <section className="bg-darkGreen py-16">
+    <section ref={scrollRef} className="bg-darkGreen py-16">
       <div className="mx-auto grid w-11/12 max-w-screen-xl gap-16 px-4 md:grid-cols-2">
         <div className="flex items-center justify-center">
           <img
@@ -11,7 +22,7 @@ export default function Introduction() {
             alt="Cabin graphic"
           />
         </div>
-        <div>
+        <motion.div style={{ y: moveUp }}>
           <h2 className="text-center font-serif text-3xl text-light sm:text-4xl md:text-start">
             Your gateway to nature&apos;s wonders
           </h2>
@@ -35,7 +46,7 @@ export default function Introduction() {
             memories. Embrace the wild, unwind in luxury, and reconnect with
             nature in the most extraordinary way. Your adventure begins here.
           </p>
-        </div>
+        </motion.div>
       </div>
     </section>
   )
