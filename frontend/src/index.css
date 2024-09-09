@@ -6,3 +6,10 @@ body {
   font-family: "Inter", "system-ui", "sans-serif";
   color: rgb(92, 92, 108);
 }
+
+.circular-progress {
+  position: absolute;
+  color: #242432 !important;
+  width: 1rem !important;
+  height: 1rem !important;
+}

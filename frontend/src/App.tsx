@@ -42,7 +42,7 @@ function App() {
           path: "logout",
           element: (
             <ProtectedRoute>
-              <Logout /> ,
+              <Logout />
             </ProtectedRoute>
           ),
         },
@@ -50,7 +50,7 @@ function App() {
           path: "bookings",
           element: (
             <ProtectedRoute>
-              <Bookings /> ,
+              <Bookings />
             </ProtectedRoute>
           ),
         },

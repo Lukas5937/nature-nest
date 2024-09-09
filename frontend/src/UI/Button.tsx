@@ -4,7 +4,14 @@ import Back from "../assets/back.svg"
 import { motion } from "framer-motion"
 
 type BaseButtonProps = {
-  style?: "magenta" | "booking" | "back" | "modal" | "date" | "dateReset"
+  style:
+    | "magenta"
+    | "booking"
+    | "back"
+    | "modal"
+    | "modalConfirm"
+    | "date"
+    | "dateReset"
   children: ReactNode
 }
 
@@ -23,11 +30,10 @@ type ButtonComponentProps = ButtonProps | LinkProps
 export default function Button(props: ButtonComponentProps) {
   const { type, children, style } = props
 
-  let classes =
-    "hover:bg-neutral-500 shadow-grayButton rounded border-2 border-light bg-neutral-400 px-8 py-4 text-light"
+  let classes
 
   if (style === "magenta") {
-    classes = "hover:bg-magentaHover rounded bg-magenta px-8 py-4 text-light"
+    classes = "rounded bg-magenta px-8 py-4 text-light hover:bg-magentaHover"
   }
   if (style === "booking") {
     classes =
@@ -36,7 +42,12 @@ export default function Button(props: ButtonComponentProps) {
 
   if (style === "modal") {
     classes = classes =
-      "rounded-md  bg-white px-4 border py-2 shadow-sm text-darkGreen"
+      "flex rounded-md border bg-white px-4 py-2 text-darkGreen shadow-sm"
+  }
+
+  if (style === "modalConfirm") {
+    classes = classes =
+      "rounded-md border bg-white px-4 py-2 text-darkGreen shadow-sm hover:bg-emerald-50 hover:outline hover:outline-2 hover:outline-green"
   }
 
   if (style === "date") {
@@ -54,7 +65,6 @@ export default function Button(props: ButtonComponentProps) {
     return (
       <button onClick={handleClick} className={classes}>
         {children}
-        <div className=""></div>
       </button>
     )
   }

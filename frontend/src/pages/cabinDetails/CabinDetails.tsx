@@ -43,6 +43,15 @@ export default function CabinDetails() {
       showLoginFirst()
       return
     }
+    if (
+      bookingPeriod &&
+      data?.occupancy.some((date) => bookingPeriod.includes(date))
+    ) {
+      console.log("hello")
+      showUnavailableBookingPeriod()
+      return
+    }
+
     showBookingConfirmation()
   }
 

@@ -1,4 +1,4 @@
-import { useContext } from "react"
+import { useContext, useState } from "react"
 import { useQuery } from "@tanstack/react-query"
 import { LoginContext } from "../../context/LoginContext"
 import {
@@ -14,6 +14,7 @@ import FetchErrorBox from "../../UI/FetchErrorBox"
 
 export default function Bookings() {
   const { user, token } = useContext(LoginContext)
+  const [activeButton, setActiveButton] = useState("")
 
   const {
     data: bookings,
@@ -41,6 +42,7 @@ export default function Bookings() {
   function handleDelete(bookingId: string) {
     if (token) {
       mutate({ bookingId, token })
+      setActiveButton(bookingId)
     }
   }
 
@@ -59,7 +61,14 @@ export default function Bookings() {
           type="button"
           handleClick={() => handleDelete(booking._id)}
         >
-          {deleteIsPending ? <CircularProgress /> : "Delete"}
+          {deleteIsPending && activeButton === booking._id ? (
+            <div className="relative flex items-center justify-center">
+              <p className="text-transparent">Delete</p>
+              <CircularProgress className="circular-progress" />
+            </div>
+          ) : (
+            "Delete"
+          )}
         </Button>
       </div>
     </li>

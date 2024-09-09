@@ -23,10 +23,10 @@ export default function Cabins() {
   return (
     <section className="mx-auto max-w-screen-2xl">
       {isPending && (
-        <>
+        <div className="flex w-full items-center justify-center">
           <p>Loading...</p>
           <CircularProgress />
-        </>
+        </div>
       )}
       {data && displayedCabins.length === 0 && (
         <p className="mt-8 text-lg font-semibold">
