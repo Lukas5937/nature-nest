@@ -69,6 +69,8 @@ export const createBooking = async (req, res, next) => {
       return next(error)
     }
 
+    await newBooking.populate('cabin')
+
     return res.status(201).json({ newBooking })
   } catch (err) {
     const error = new HttpError(
@@ -124,8 +126,6 @@ export const deleteBooking = async (req, res, next) => {
     user.bookings = user.bookings.filter(
       (booking) => booking.toString() !== bookingId
     )
-
-    console.log(user)
 
     cabin.occupancy = cabin.occupancy.filter(
       (occupancyDate) =>
