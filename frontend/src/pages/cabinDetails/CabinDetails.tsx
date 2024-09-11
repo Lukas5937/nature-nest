@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react"
-import { useParams, NavLink, Outlet } from "react-router-dom"
+import { useParams, NavLink, Outlet, useOutletContext } from "react-router-dom"
 import { useQuery } from "@tanstack/react-query"
 
 import { ModalContext } from "../../context/ModalContext"
@@ -16,6 +16,7 @@ import LoginFirstModal from "./components/LoginFirstModal"
 import BookingConfirmationModal from "./components/BookingConfirmationModal"
 import SelectBookingPeriodModal from "./components/SelectBookingPeriodModal"
 import UnavailableBookingPeriodModal from "./components/UnavailableBookingPeriodModal"
+import InvalidBookingPeriodModal from "./components/InvalidBookingPeriodModal"
 
 export default function CabinDetails() {
   const { cabinId } = useParams()
@@ -25,6 +26,7 @@ export default function CabinDetails() {
     showLoginFirst,
     showBookingConfirmation,
     showSelectBookingPeriod,
+    showInvalidBookingPeriod,
     showUnavailableBookingPeriod,
   } = useContext(ModalContext)
   const { bookingPeriod } = useContext(BookingContext)
@@ -34,9 +36,17 @@ export default function CabinDetails() {
     queryFn: ({ signal }) => fetchCabin({ signal, cabinId }),
   })
 
+  const { invalidDatesMessage } = useOutletContext<{
+    invalidDatesMessage: string
+  }>()
+
   function handleBookNow() {
-    if (!bookingPeriod || bookingPeriod.length === 0) {
+    if (!bookingPeriod) {
       showSelectBookingPeriod()
+      return
+    }
+    if (invalidDatesMessage) {
+      showInvalidBookingPeriod()
       return
     }
     if (!token) {
@@ -47,11 +57,9 @@ export default function CabinDetails() {
       bookingPeriod &&
       data?.occupancy.some((date) => bookingPeriod.includes(date))
     ) {
-      console.log("hello")
       showUnavailableBookingPeriod()
       return
     }
-
     showBookingConfirmation()
   }
 
@@ -68,25 +76,29 @@ export default function CabinDetails() {
     const { name, address, price } = data
 
     return (
-      <main>
+      <main className="bg-grayCard rounded-lg p-4 lg:p-8">
         {data && (
-          <div className="mt-8 lg:mt-0">
+          <div className="mx-auto max-w-6xl">
             <Button to=".." type="link" style="back">
               Back
             </Button>
-            <div className="mt-4 grid grid-rows-[auto_1fr] gap-x-6 md:grid-cols-2 xl:grid-cols-[60%_1fr] xl:gap-x-12">
+            <div className="mt-6 grid grid-rows-[auto_1fr] gap-6 md:grid-cols-2 xl:grid-cols-[60%_1fr] xl:gap-12">
               <div className="col-span-1 row-start-2 mt-4 md:row-span-full md:mt-0">
                 <CabinImages />
               </div>
-              <div className="">
-                <h1 className="text-lg font-bold">{name}</h1>
-                <p>{address}</p>
+              <div>
+                <h1 className="text-2xl font-bold text-darkGreen">{name}</h1>
+                <p className="text-dark">{address}</p>
               </div>
-              <div className="mt-8 flex flex-col justify-end">
+              <div className="mt-8 flex flex-col justify-between">
                 <div className="flex items-center justify-end gap-4">
-                  <div>
-                    <p className="text-xl font-semibold">${price}</p>
-                    <p className="mt-[-4px] text-right font-light">/day</p>
+                  <div className="text-right">
+                    <p className="text-2xl font-semibold text-magenta">
+                      ${price}
+                    </p>
+                    <p className="mt-[-2px] text-right font-light text-dark">
+                      /day
+                    </p>
                   </div>
                   <Button
                     handleClick={handleBookNow}
@@ -96,11 +108,13 @@ export default function CabinDetails() {
                     Book now
                   </Button>
                 </div>
-                <div className="mt-4">
-                  <nav className="mb-4 flex gap-8">
+                <div className="mt-6">
+                  <nav className="mb-6 flex gap-8 pb-2">
                     <NavLink
                       className={({ isActive }) =>
-                        isActive ? "border-b-2 border-stone-300" : ""
+                        isActive
+                          ? "border-b-2 border-darkGreen text-dark"
+                          : "text-dark"
                       }
                       end
                       preventScrollReset
@@ -110,7 +124,9 @@ export default function CabinDetails() {
                     </NavLink>
                     <NavLink
                       className={({ isActive }) =>
-                        isActive ? "border-b-2 border-stone-300" : ""
+                        isActive
+                          ? "border-b-2 border-darkGreen text-dark"
+                          : "text-dark"
                       }
                       preventScrollReset
                       to="map"
@@ -118,7 +134,7 @@ export default function CabinDetails() {
                       Map
                     </NavLink>
                   </nav>
-                  <div className="h-72">
+                  <div className="h-72 overflow-auto">
                     <Outlet context={data} />
                   </div>
                 </div>
@@ -129,6 +145,7 @@ export default function CabinDetails() {
         <LoginFirstModal />
         <SelectBookingPeriodModal />
         <UnavailableBookingPeriodModal />
+        <InvalidBookingPeriodModal />
         <BookingConfirmationModal cabin={data} price={price} />
         {isError && <FetchErrorBox error={error} />}
         {isPending && (

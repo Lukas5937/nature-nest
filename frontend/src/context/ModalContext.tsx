@@ -10,6 +10,7 @@ type ModalContextValue = {
   showBookingConfirmation: () => void
   showSelectBookingPeriod: () => void
   showUnavailableBookingPeriod: () => void
+  showInvalidBookingPeriod: () => void
   hideModal: () => void
 }
 
@@ -19,6 +20,7 @@ export const ModalContext = createContext<ModalContextValue>({
   showBookingConfirmation: () => {},
   showSelectBookingPeriod: () => {},
   showUnavailableBookingPeriod: () => {},
+  showInvalidBookingPeriod: () => {},
   hideModal: () => {},
 })
 
@@ -30,6 +32,7 @@ export default function ModalContextProvider({
     | "bookingConfirmation"
     | "selectBookingPeriod"
     | "unavailableBookingPeriod"
+    | "invalidBookingPeriod"
     | null
   >(null)
 
@@ -45,6 +48,10 @@ export default function ModalContextProvider({
     setActiveModal("selectBookingPeriod")
   }
 
+  function showInvalidBookingPeriod() {
+    setActiveModal("invalidBookingPeriod")
+  }
+
   function showUnavailableBookingPeriod() {
     setActiveModal("unavailableBookingPeriod")
   }
@@ -58,6 +65,7 @@ export default function ModalContextProvider({
     showLoginFirst,
     showBookingConfirmation,
     showSelectBookingPeriod,
+    showInvalidBookingPeriod,
     showUnavailableBookingPeriod,
     hideModal,
   }

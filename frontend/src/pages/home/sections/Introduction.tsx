@@ -13,7 +13,7 @@ export default function Introduction() {
   const moveUp = useTransform(scrollYProgress, [0, 0.7], [70, 0])
 
   return (
-    <section ref={scrollRef} className="bg-darkGreen py-16">
+    <section ref={scrollRef} className="relative bg-darkGreen py-16">
       <div className="mx-auto grid w-11/12 max-w-screen-xl gap-16 px-4 md:grid-cols-2">
         <div className="flex items-center justify-center">
           <img

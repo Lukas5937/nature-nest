@@ -55,11 +55,6 @@ export default function BookingConfirmationModal({
     mutate({ bookingData, token })
   }
 
-  if (isError && error) {
-    console.log(error.message)
-    console.log(error.info)
-  }
-
   return (
     <Modal open={activeModal === "bookingConfirmation"} onClose={hideModal}>
       {!isError && (
@@ -67,7 +62,8 @@ export default function BookingConfirmationModal({
           <h2 className="text-lg font-bold text-green">Confirm Your Booking</h2>
           <p className="mt-4 text-sm font-light text-gray-500 xs:text-base">
             Are you sure you want to complete this booking? Please review your
-            details before proceeding. Press "Confirm" to finalize your booking.
+            details before proceeding. Press "Confirm booking" to finalize your
+            booking.
           </p>
           <div className="mt-6 text-sm xs:text-base">
             <p>Cabin: {cabin.name}</p>

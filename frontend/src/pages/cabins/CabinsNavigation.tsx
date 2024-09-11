@@ -29,6 +29,7 @@ export default function CabinsNavigation() {
     isError,
     error,
     displayedCabins,
+    invalidDatesMessage,
   }
 
   return (
@@ -37,7 +38,7 @@ export default function CabinsNavigation() {
         <div>
           <fieldset className="flex flex-col items-start gap-4 border-0 lg:mt-4">
             <legend className="mb-2 ml-2">Select your booking dates</legend>
-            <div className="xs:flex-row flex flex-col gap-2 lg:flex-col lg:gap-4">
+            <div className="flex flex-col gap-2 xs:flex-row lg:flex-col lg:gap-4">
               <DateInput
                 handleChange={handleCheckInValue}
                 value={checkInDate}

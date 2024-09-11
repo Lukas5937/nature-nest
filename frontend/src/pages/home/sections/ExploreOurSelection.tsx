@@ -16,7 +16,7 @@ export default function ExploreOurSelection() {
   return (
     <section
       ref={scrollRef}
-      className="mx-auto my-16 w-11/12 max-w-screen-sm text-center md:my-28"
+      className="relative mx-auto my-16 w-11/12 max-w-screen-sm text-center md:my-28"
     >
       <motion.div style={{ y: moveDown, scale }}>
         <h2 className="px-4 text-center font-serif text-4xl text-dark md:text-5xl">

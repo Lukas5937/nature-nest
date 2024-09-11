@@ -29,23 +29,25 @@ export default function Header() {
           </motion.h1>
         </div>
         <div className="max-h-48 overflow-hidden rounded-3xl md:max-h-full">
-          <img
+          <motion.img
             className="h-full w-full object-cover"
             src={Forest}
             alt="Forest"
+            style={{ scale }}
           />
         </div>
 
         <div className="flex max-h-48 overflow-hidden rounded-3xl md:max-h-full">
-          <img
+          <motion.img
             className="h-full w-full object-cover"
             src={Waterfall}
             alt="Waterfall"
+            style={{ scale }}
           />
         </div>
         <div className="row-start-3 flex items-center justify-center rounded-3xl bg-dark py-8 md:col-span-2 md:row-start-auto">
           <motion.h2
-            className="text-highlightBlue font-serif text-2xl md:text-4xl lg:text-5xl"
+            className="relative font-serif text-2xl text-highlightBlue md:text-4xl lg:text-5xl"
             style={{ y: moveUp, scale }}
           >
             Travel Wild

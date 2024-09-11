@@ -12,6 +12,7 @@ import CabinDetailsMap from "./pages/cabinDetails/components/CabinDetailsMap"
 import Authentication from "./pages/authentication/Authentication"
 import ProtectedRoute from "./ProtectedRoute"
 import Bookings from "./pages/bookings/Bookings"
+import NewBooking from "./pages/newBooking/NewBooking"
 import Logout from "./pages/authentication/Logout"
 
 function App() {
@@ -51,6 +52,14 @@ function App() {
           element: (
             <ProtectedRoute>
               <Bookings />
+            </ProtectedRoute>
+          ),
+        },
+        {
+          path: "new-booking",
+          element: (
+            <ProtectedRoute>
+              <NewBooking />
             </ProtectedRoute>
           ),
         },

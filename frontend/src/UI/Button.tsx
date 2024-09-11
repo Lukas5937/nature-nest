@@ -12,6 +12,7 @@ type BaseButtonProps = {
     | "modalConfirm"
     | "date"
     | "dateReset"
+    | "cancel"
   children: ReactNode
 }
 
@@ -52,12 +53,17 @@ export default function Button(props: ButtonComponentProps) {
 
   if (style === "date") {
     classes = classes =
-      "w-max rounded border border-gray-300 bg-inherit px-2 py-1 text-sm text-darkGreen hover:bg-emerald-50 hover:outline hover:outline-2 hover:outline-green sm:text-base"
+      "rounded border border-gray-300 bg-inherit px-2 py-1 text-sm text-darkGreen hover:bg-emerald-50 hover:outline hover:outline-2 hover:outline-green sm:text-base"
   }
 
   if (style === "dateReset") {
     classes = classes =
-      "w-max rounded bg-inherit px-2 border border-gray-300 py-1 text-sm text-darkGreen hover:bg-stone-100 hover:outline hover:outline-2 hover:outline-magenta sm:text-base"
+      "rounded bg-inherit px-2 border border-gray-300 py-1 text-sm text-darkGreen hover:bg-stone-100 hover:outline hover:outline-2 hover:outline-magenta sm:text-base"
+  }
+
+  if (style === "cancel") {
+    classes =
+      "bg-darkGreen text-light px-4 py-1.5 rounded-md hover:outline hover:shadow-magentaButton w-full xsl:w-auto md:text-base"
   }
 
   if (type === "button") {
