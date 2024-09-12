@@ -63,7 +63,7 @@ export default function Button(props: ButtonComponentProps) {
 
   if (style === "cancel") {
     classes =
-      "bg-darkGreen text-light px-4 py-1.5 rounded-md hover:outline hover:shadow-magentaButton w-full xsl:w-auto md:text-base"
+      "bg-darkGreen text-light px-4 py-1.5 rounded-md hover:outline hover:shadow-magentaButton w-full xs:w-auto md:text-base"
   }
 
   if (type === "button") {

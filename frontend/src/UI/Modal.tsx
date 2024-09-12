@@ -16,7 +16,11 @@ export default function Modal({ children, open, onClose }: ModalProps) {
     } else {
       modal?.close()
     }
-    return () => modal?.close()
+    return () => {
+      if (!open) {
+        modal?.close()
+      }
+    }
   }, [open])
 
   useEffect(() => {
