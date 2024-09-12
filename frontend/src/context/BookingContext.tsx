@@ -9,7 +9,7 @@ type BookingContextValue = {
   today: string | null
   bookingPeriod: string[] | null
   totalPrice: number | null
-  addBookingPeriod: (period: string[]) => void
+  addBookingPeriod: (period: string[] | null) => void
   addTotalPrice: (price: number) => void
   newBooking: BookingsResponseData | null
   setNewBooking: React.Dispatch<
@@ -42,7 +42,7 @@ export default function BookingContextProvider({
   const year = todayObject.getFullYear()
   const today = `${month}/${day}/${year}`
 
-  const addBookingPeriod = useCallback((period: string[]) => {
+  const addBookingPeriod = useCallback((period: string[] | null) => {
     setBookingPeriod(period)
   }, [])
 

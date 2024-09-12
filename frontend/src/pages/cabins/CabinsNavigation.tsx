@@ -1,6 +1,8 @@
+import { useEffect, useContext } from "react"
 import { Outlet } from "react-router-dom"
 import useCabinsFilters from "./hooks/useCabinsFilters"
 import useCabinsFetch from "./hooks/useCabinsFetch"
+import { BookingContext } from "../../context/BookingContext"
 
 import DateInput from "./components/DateInput"
 import SearchInput from "./components/SearchInput"
@@ -22,6 +24,14 @@ export default function CabinsNavigation() {
     handleSetBookingPeriod,
     handleResetBookingPeriod,
   } = useCabinsFilters()
+
+  const { bookingPeriod, addBookingPeriod } = useContext(BookingContext)
+
+  useEffect(() => {
+    addBookingPeriod(null)
+  }, [addBookingPeriod])
+
+  console.log(bookingPeriod)
 
   const outletContext = {
     data,
