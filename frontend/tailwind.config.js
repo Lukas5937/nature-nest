@@ -17,7 +17,6 @@ export default {
         greenHover: "#2C5A44",
         greenCard: "#D9EAD3",
         grayCard: "#E3E8E0",
-        lightGreen: "#9AE4CE",
         magenta: "#BF1363",
         magentaHover: "#B0125B",
         highlightBlue: "#63c7fd",
@@ -29,7 +28,6 @@ export default {
       },
       screens: {
         xs: "440px",
-        xsl: "520px",
       },
     },
   },

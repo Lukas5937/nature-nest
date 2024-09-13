@@ -43,11 +43,13 @@ export default function CabinsNavigation() {
   }
 
   return (
-    <main className="mx-auto grid w-11/12 max-w-screen-xl gap-2 lg:my-8 lg:grid-cols-[1fr_auto] lg:gap-12">
+    <main className="mx-auto grid w-11/12 max-w-screen-xl gap-4 lg:my-8 lg:grid-cols-[1fr_auto] lg:gap-8">
       <section className="grid grid-rows-[1fr_auto] items-start lg:sticky lg:top-8 lg:block lg:h-max">
         <div>
-          <fieldset className="flex flex-col items-start gap-4 border-0 lg:mt-4">
-            <legend className="mb-2 ml-2">Select your booking dates</legend>
+          <fieldset className="flex flex-col gap-4 border-0 lg:mt-4">
+            <legend className="mb-2 text-lg font-semibold text-dark">
+              Select your booking dates
+            </legend>
             <div className="flex flex-col gap-2 xs:flex-row lg:flex-col lg:gap-4">
               <DateInput
                 handleChange={handleCheckInValue}
@@ -62,11 +64,11 @@ export default function CabinsNavigation() {
             </div>
           </fieldset>
           {invalidDatesMessage && (
-            <div className="ml-2 mt-2 text-sm text-magenta sm:text-base">
+            <div className="mt-2 text-sm text-magenta sm:text-base">
               {invalidDatesMessage}
             </div>
           )}
-          <div className="mt-2 flex gap-2 lg:mt-4">
+          <div className="mt-4 flex gap-2">
             <Button
               type="button"
               style="dateReset"
@@ -83,7 +85,7 @@ export default function CabinsNavigation() {
             </Button>
           </div>
         </div>
-        <div className="mt-8 grid items-end justify-between md:flex md:flex-row lg:mt-0 lg:flex-col lg:items-stretch lg:gap-0">
+        <div className="mt-8 grid items-end gap-4 lg:mt-0 lg:flex lg:flex-col lg:items-stretch">
           <SortButtons
             activeSortMethod={activeSortMethod}
             setActiveSortMethod={setActiveSortMethod}

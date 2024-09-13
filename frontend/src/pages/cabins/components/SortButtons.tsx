@@ -22,13 +22,14 @@ export default function SortButtons({
     setActiveSortMethod("popularity")
   }
 
-  const styles = "relative rounded-xl border border-gray-200 px-2 py-1"
+  const styles =
+    "relative rounded border border-gray-300 bg-grayCard px-3 py-2 text-sm text-dark cursor-pointer focus:outline-none"
   const activeStyles =
-    "relative rounded-xl border border-gray-200 px-2 py-1 outline outline-2 outline-green"
+    "relative rounded border border-gray-300 bg-greenCard px-3 py-2 text-sm text-darkGreen cursor-pointer outline outline-2 outline-green"
 
   return (
-    <fieldset className="mt-8 flex gap-2 text-sm sm:text-base md:mt-0 lg:mt-12 lg:grid lg:grid-cols-2">
-      <legend className="mb-2 ml-2">Sort options</legend>
+    <fieldset className="mt-8 grid grid-cols-2 items-start gap-2 text-sm xs:flex sm:text-base lg:mt-12 lg:grid lg:grid-cols-2 lg:items-stretch">
+      <legend className="mb-2 text-text">Sort options</legend>
       <label className={activeSortMethod === "name" ? activeStyles : styles}>
         Name
         <input

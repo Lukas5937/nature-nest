@@ -10,8 +10,8 @@ export default function Header() {
     target: scrollRef,
     offset: ["start end", "end start"],
   })
-  const moveDown = useTransform(scrollYProgress, [0, 1], [-60, 60])
-  const moveUp = useTransform(scrollYProgress, [0, 1], [60, -30])
+  const moveDown = useTransform(scrollYProgress, [0, 0.5], [-30, 0])
+  const moveUp = useTransform(scrollYProgress, [0, 0.5], [30, 0])
   const scale = useTransform(scrollYProgress, [0, 1], [0.9, 1.2])
 
   return (

@@ -31,16 +31,16 @@ export default function SearchInput({ handleChange }: CabinsInputProps) {
     <div className="row-start-1 lg:mt-8">
       {!searchIsOpen && (
         <button
-          className="flex items-center gap-2 border-b border-gray-200 py-4 hover:border-b hover:border-text lg:mt-0"
+          className="flex items-center gap-2 border-b border-gray-300 py-4 text-text hover:border-b hover:border-green lg:mt-0"
           onClick={handleOpenSearchInput}
         >
           <img width="28px" src={Search} alt="" />
-          <p className="text-base sm:text-lg">Search Cabins</p>
+          <p className="text-sm sm:text-base">Search Cabins</p>
         </button>
       )}
       {searchIsOpen && (
         <input
-          className="border-1 border-b border-gray-200 bg-inherit py-4 placeholder:text-text focus:border-b focus:border-green focus:outline-none"
+          className="border-1 border-b border-gray-300 bg-light px-2 py-4 text-darkGreen placeholder:text-text focus:border-b focus:border-green focus:outline-none"
           id="cabinsSearch"
           type="search"
           ref={searchRef}

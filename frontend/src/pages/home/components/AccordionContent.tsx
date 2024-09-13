@@ -1,6 +1,7 @@
 import { ReactNode, useContext } from "react"
 import { AccordionContext } from "./Accordion"
 import { AccordionItemContext } from "./AccordionItem"
+import { motion, AnimatePresence } from "framer-motion"
 
 export default function AccordionContent({
   children,
@@ -12,11 +13,18 @@ export default function AccordionContent({
 
   const isOpen = openItem === id
 
-  let className = "hidden"
-
-  if (isOpen) {
-    className = "mt-4 leading-7"
-  }
-
-  return <div className={className}>{children}</div>
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          className="mt-4 overflow-hidden leading-7"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          {children}
+        </motion.div>
+      )}
+    </AnimatePresence>
+  )
 }

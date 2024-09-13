@@ -76,7 +76,7 @@ export default function CabinDetails() {
     const { name, address, price } = data
 
     return (
-      <main className="bg-grayCard rounded-lg p-4 lg:p-8">
+      <main className="rounded-lg bg-grayCard p-4 lg:p-8">
         {data && (
           <div className="mx-auto max-w-6xl">
             <Button to=".." type="link" style="back">

@@ -44,39 +44,67 @@ export default function LoginForm({ mutate }: LoginFormProps) {
   }
 
   return (
-    <form className="flex flex-col gap-6" onSubmit={handleSubmit} noValidate>
-      <div className="flex flex-col">
-        <label htmlFor="email">Email</label>
-        <input
-          className="bg-lightGreen"
-          type="email"
-          id="email"
-          ref={emailRef}
-        />
-      </div>
-      {formIsInvalid.email && <p>Please enter a valid email address.</p>}
-      <div className="flex flex-col">
-        <label htmlFor="password">Password</label>
-        <input
-          className="bg-lightGreen"
-          type="password"
-          id="password"
-          ref={passwordRef}
-        />
-      </div>
-      {formIsInvalid.password && (
-        <p>Your password must be at least 6 characters long.</p>
-      )}
-      {!formIsInvalid.password && serverError && <p>{serverError}</p>}
+    <div className="mx-auto mt-10 max-w-md rounded-lg p-6">
+      <h2 className="mb-4 text-center text-2xl font-semibold text-dark">
+        Log In
+      </h2>
+      <p className="mb-6 text-center text-text">
+        Please enter your email and password to log in to your account.
+      </p>
+      <form className="flex flex-col gap-4" onSubmit={handleSubmit} noValidate>
+        <div className="flex flex-col">
+          <label htmlFor="email" className="text-sm text-text">
+            Email
+          </label>
+          <input
+            className="rounded border border-gray-300 bg-grayCard px-3 py-2 text-dark focus:outline-none focus:ring-2 focus:ring-green"
+            type="email"
+            id="email"
+            ref={emailRef}
+          />
+          {formIsInvalid.email && (
+            <p className="mt-1 text-sm text-magenta">
+              Please enter a valid email address.
+            </p>
+          )}
+        </div>
 
-      <div className="mx-auto text-center">
-        <p>Don't have an account yet?</p>
-        <p>Join us today!</p>
-        <Link className="mx-auto" to="?mode=signup">
-          Sign up now to create your account.
-        </Link>{" "}
-      </div>
-      <button>Login</button>
-    </form>
+        <div className="flex flex-col">
+          <label htmlFor="password" className="text-sm text-text">
+            Password
+          </label>
+          <input
+            className="rounded border border-gray-300 bg-grayCard px-3 py-2 text-dark focus:outline-none focus:ring-2 focus:ring-green"
+            type="password"
+            id="password"
+            ref={passwordRef}
+          />
+          {formIsInvalid.password && (
+            <p className="mt-1 text-sm text-magenta">
+              Your password must be at least 6 characters long.
+            </p>
+          )}
+        </div>
+
+        {!formIsInvalid.password && serverError && (
+          <p className="text-sm text-magenta">{serverError}</p>
+        )}
+
+        <div className="text-center">
+          <p className="text-sm text-text">Don't have an account yet?</p>
+          <p className="text-sm text-text">Join us today!</p>
+          <Link
+            className="text-green underline hover:text-greenHover"
+            to="?mode=signup"
+          >
+            Sign up now to create your account.
+          </Link>
+        </div>
+
+        <button className="w-full rounded bg-green py-2 text-light hover:bg-greenHover focus:outline-none focus:ring-2 focus:ring-green">
+          Login
+        </button>
+      </form>
+    </div>
   )
 }

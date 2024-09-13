@@ -10,7 +10,7 @@ export default function Introduction() {
     offset: ["start end", "end start"],
   })
 
-  const moveUp = useTransform(scrollYProgress, [0, 0.7], [70, 0])
+  const moveUp = useTransform(scrollYProgress, [0, 0.7], [50, 0])
 
   return (
     <section ref={scrollRef} className="relative bg-darkGreen py-16">

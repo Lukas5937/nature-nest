@@ -11,9 +11,8 @@ export default function WhatWeOffer() {
     offset: ["start end", "end start"],
   })
 
-  const moveDown = useTransform(scrollYProgress, [0, 0.7], [-70, 0])
+  const moveDown = useTransform(scrollYProgress, [0, 0.7], [-30, 0])
 
-  ;("text-xl font-light text-dark sm:text-2xl")
   return (
     <section ref={scrollRef} className="bg-bgMagenta">
       <div className="grid grid-cols-1 grid-rows-1 gap-4 lg:grid-cols-2">

@@ -19,7 +19,7 @@ export default function DateInput({
 
   return (
     <input
-      className="w-48 max-w-full rounded-xl border border-gray-200 bg-inherit px-4 py-2 text-sm text-text placeholder:text-text focus:outline focus:outline-2 focus:outline-green sm:w-56 sm:text-base"
+      className="w-48 max-w-full rounded border border-gray-300 bg-grayCard px-3 py-2 text-sm text-darkGreen placeholder:text-text focus:outline-2 focus:outline-green sm:w-56 sm:text-base"
       placeholder={placeholder}
       onFocus={(event) => (event.target.type = "date")}
       value={value}

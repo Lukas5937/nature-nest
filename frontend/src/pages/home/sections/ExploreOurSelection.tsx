@@ -10,7 +10,7 @@ export default function ExploreOurSelection() {
     offset: ["start end", "end start"],
   })
 
-  const moveDown = useTransform(scrollYProgress, [0, 0.5], [-30, 0])
+  const moveDown = useTransform(scrollYProgress, [0, 0.5], [-20, 0])
   const scale = useTransform(scrollYProgress, [0, 0.5], [0.95, 1])
 
   return (

@@ -38,12 +38,12 @@ export default function Button(props: ButtonComponentProps) {
   }
   if (style === "booking") {
     classes =
-      "hover:shadow-greenButton hover:bg-greenHover rounded bg-green px-6 py-3 text-light"
+      " rounded bg-green px-6 py-3 text-light hover:shadow-greenButton hover:bg-greenHover"
   }
 
   if (style === "modal") {
     classes = classes =
-      "flex rounded-md border bg-white px-4 py-2 text-darkGreen shadow-sm"
+      "flex rounded-md border bg-white px-4 py-2 text-darkGreen shadow-sm hover:bg-red-50"
   }
 
   if (style === "modalConfirm") {
@@ -52,13 +52,13 @@ export default function Button(props: ButtonComponentProps) {
   }
 
   if (style === "date") {
-    classes = classes =
-      "rounded border border-gray-300 bg-inherit px-2 py-1 text-sm text-darkGreen hover:bg-emerald-50 hover:outline hover:outline-2 hover:outline-green sm:text-base"
+    classes =
+      "rounded border border-gray-300 bg-inherit px-2 py-1 text-sm text-darkGreen hover:bg-emerald-50 sm:text-base"
   }
 
   if (style === "dateReset") {
-    classes = classes =
-      "rounded bg-inherit px-2 border border-gray-300 py-1 text-sm text-darkGreen hover:bg-stone-100 hover:outline hover:outline-2 hover:outline-magenta sm:text-base"
+    classes =
+      "rounded bg-inherit px-2 border border-gray-300 py-1 text-sm text-darkGreen hover:bg-red-50 sm:text-base" // Alternativ: hover:bg-[#E6B0AA]
   }
 
   if (style === "cancel") {
