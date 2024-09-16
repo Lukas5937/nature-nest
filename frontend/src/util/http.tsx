@@ -26,7 +26,7 @@ export type Cabin = {
 }
 
 export async function fetchCabins({ signal }: { signal?: AbortSignal }) {
-  const url = "http://localhost:4000/api/v1/cabins/"
+  const url = "http://localhost:4000/api/v1/cabins"
 
   const response = await fetch(url, { signal })
 
@@ -76,6 +76,25 @@ export async function fetchCabin({
 export type LoginUser = {
   email: string
   password: string
+}
+
+export async function fetchAPIKey({ signal }: { signal?: AbortSignal }) {
+  const url = "http://localhost:4000/api/v1/google-maps-key"
+
+  const response = await fetch(url, { signal })
+
+  if (!response.ok) {
+    const error: FetchError = {
+      message: "An error occurred while fetching the API key.",
+      code: response.status,
+      info: await response.json(),
+    }
+    throw error
+  }
+
+  const { apiKey } = await response.json()
+
+  return apiKey
 }
 
 export async function loginUser(userData: LoginUser) {

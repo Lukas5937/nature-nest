@@ -4,6 +4,9 @@ import HttpError from './models/httpError.js'
 import cabinsRoutes from './routes/cabinsRoutes.js'
 import usersRoutes from './routes/usersRoutes.js'
 import bookingsRoutes from './routes/bookingsRoutes.js'
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 const app = express()
 const PORT = 4000
@@ -26,6 +29,16 @@ app.use((req, res, next) => {
 app.use('/api/v1/cabins', cabinsRoutes)
 app.use('/api/v1/users', usersRoutes)
 app.use('/api/v1/bookings', bookingsRoutes)
+
+app.get('/api/v1/google-maps-key', (req, res) => {
+  const googleMapsApiKey = process.env.GOOGLE_MAPS_API_KEY
+
+  if (googleMapsApiKey) {
+    res.json({ apiKey: googleMapsApiKey })
+  } else {
+    res.status(500).json({ error: 'API key not found' })
+  }
+})
 
 app.use((req, res, next) => {
   const error = new HttpError('Could not find this route.', 404)
