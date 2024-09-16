@@ -10,7 +10,6 @@ import { type Cabin, type FetchError } from "../../util/http"
 
 import CabinImages from "./components/CabinImages"
 import FetchErrorBox from "../../UI/FetchErrorBox"
-import CircularProgress from "@mui/material/CircularProgress"
 import Button from "../../UI/Button"
 import LoginFirstModal from "./components/LoginFirstModal"
 import BookingConfirmationModal from "./components/BookingConfirmationModal"
@@ -151,7 +150,6 @@ export default function CabinDetails() {
         {isPending && (
           <>
             <p>Loading...</p>
-            <CircularProgress />
           </>
         )}
       </main>
