@@ -1,11 +1,10 @@
 import { useOutletContext } from "react-router-dom"
-
 import { type Cabin, type FetchError } from "../../util/http"
+import useImageURLs from "../../hooks/useImageUrls"
 
 import CabinCard from "./components/CabinCard"
 import { CircularProgress } from "@mui/material"
 import FetchErrorBox from "../../UI/FetchErrorBox"
-import WhisperingPinesCabin from "../../assets/cabin/WhisperingPinesCabin.jpeg"
 
 export default function Cabins() {
   const { data, isPending, isError, error, displayedCabins } =
@@ -17,15 +16,18 @@ export default function Cabins() {
       displayedCabins: Cabin[]
     }>()
 
+  const { createCoverImageUrl } = useImageURLs()
+
   if (isError && error) {
     return <FetchErrorBox error={error} />
   }
+
   return (
     <section className="mx-auto max-w-screen-2xl">
       {isPending && (
-        <div className="flex w-full items-center justify-center">
+        <div className="flex w-full items-center justify-center gap-2">
           <p>Loading...</p>
-          <CircularProgress />
+          <CircularProgress className="circular-progress" />
         </div>
       )}
       {data && displayedCabins.length === 0 && (
@@ -36,11 +38,15 @@ export default function Cabins() {
       )}
       {data && (
         <ul className="grid gap-2 sm:grid-cols-2 xl:grid-cols-3">
-          {displayedCabins.map((cabin) => (
-            <li key={cabin._id}>
-              <CabinCard cabin={cabin} img={WhisperingPinesCabin} />
-            </li>
-          ))}
+          {displayedCabins.map((cabin) => {
+            const coverImageUrl = createCoverImageUrl(cabin)
+            console.log(coverImageUrl)
+            return (
+              <li key={cabin._id}>
+                <CabinCard cabin={cabin} img={coverImageUrl} />
+              </li>
+            )
+          })}
         </ul>
       )}
     </section>

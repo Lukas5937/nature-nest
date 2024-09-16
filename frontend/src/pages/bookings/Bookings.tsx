@@ -8,13 +8,12 @@ import {
   type BookingsResponseData,
   type FetchError,
 } from "../../util/http"
+import useImageURLs from "../../hooks/useImageUrls"
 
 import CancellationConfirmationModal from "./components/CancellationConfirmationModal"
 import Button from "../../UI/Button"
 import CircularProgress from "@mui/material/CircularProgress"
 import FetchErrorBox from "../../UI/FetchErrorBox"
-
-import CabinImage from "../../assets/cabin/WhisperingPinesCabin.jpeg"
 
 export default function Bookings() {
   const { user, token } = useContext(LoginContext)
@@ -40,6 +39,8 @@ export default function Bookings() {
     },
     enabled: user !== null && token !== null,
   })
+
+  const { createCoverImageUrl } = useImageURLs()
 
   function handleCancelBooking(bookingId: string) {
     setSelectedBookingId(bookingId)
@@ -82,58 +83,61 @@ export default function Bookings() {
     bookings: BookingsResponseData[],
     style: "current" | "past",
   ) {
-    return bookings.map((booking) => (
-      <li key={booking._id}>
-        <div
-          className={
-            style === "current"
-              ? "flex max-w-screen-lg flex-col items-stretch justify-between rounded-lg bg-greenCard p-4 shadow-md sm:flex-row sm:gap-12"
-              : "flex max-w-screen-lg flex-col items-stretch justify-between rounded-lg bg-grayCard p-4 shadow-md sm:flex-row sm:gap-12"
-          }
-        >
-          <div className="flex flex-col gap-4 sm:flex-row">
-            <img
-              src={CabinImage}
-              alt={`Image of ${booking.cabin.name}`}
-              className="h-32 w-auto rounded-lg object-cover"
-            />
-            <div className="w-full">
-              <h2 className="font-semibold text-darkGreen md:text-lg">
-                {booking.cabin.name}
-              </h2>
-              <p className="text-sm sm:mt-1">
-                <strong className="text-magenta">Booking period:</strong>{" "}
-                {booking.bookingPeriod[0]} -{" "}
-                {booking.bookingPeriod[booking.bookingPeriod.length - 1]}
-              </p>
-              <p className="text-sm">
-                <strong className="text-magenta">Length of Stay:</strong>{" "}
-                {booking.bookingPeriod.length - 1}{" "}
-                {booking.bookingPeriod.length - 1 > 1 ? "nights" : "night"}
-              </p>
-              <p className="text-sm">
-                <strong className="text-magenta">Total price:</strong> $
-                {booking.totalPrice}
-              </p>
+    return bookings.map((booking) => {
+      const coverImageUrl = createCoverImageUrl(booking.cabin)
+      return (
+        <li key={booking._id}>
+          <div
+            className={
+              style === "current"
+                ? "flex max-w-screen-lg flex-col items-stretch justify-between rounded-lg bg-greenCard p-4 shadow-md sm:flex-row sm:gap-12"
+                : "flex max-w-screen-lg flex-col items-stretch justify-between rounded-lg bg-grayCard p-4 shadow-md sm:flex-row sm:gap-12"
+            }
+          >
+            <div className="flex flex-col gap-4 sm:flex-row">
+              <img
+                src={coverImageUrl}
+                alt={`Image of ${booking.cabin.name}`}
+                className="h-32 w-auto rounded-lg object-cover"
+              />
+              <div className="w-full">
+                <h2 className="font-semibold text-darkGreen md:text-lg">
+                  {booking.cabin.name}
+                </h2>
+                <p className="text-sm sm:mt-1">
+                  <strong className="text-magenta">Booking period:</strong>{" "}
+                  {booking.bookingPeriod[0]} -{" "}
+                  {booking.bookingPeriod[booking.bookingPeriod.length - 1]}
+                </p>
+                <p className="text-sm">
+                  <strong className="text-magenta">Length of Stay:</strong>{" "}
+                  {booking.bookingPeriod.length - 1}{" "}
+                  {booking.bookingPeriod.length - 1 > 1 ? "nights" : "night"}
+                </p>
+                <p className="text-sm">
+                  <strong className="text-magenta">Total price:</strong> $
+                  {booking.totalPrice}
+                </p>
+              </div>
+            </div>
+            <div className="mt-6 xs:mt-2 xs:text-end sm:mt-0">
+              <div className="mb-2 text-sm">
+                <strong>Your booking from {booking.date}</strong>
+              </div>
+              {style === "current" && (
+                <Button
+                  type="button"
+                  style="cancel"
+                  handleClick={() => handleCancelBooking(booking._id)}
+                >
+                  Cancel booking
+                </Button>
+              )}
             </div>
           </div>
-          <div className="mt-6 xs:mt-2 xs:text-end sm:mt-0">
-            <div className="mb-2 text-sm">
-              <strong>Your booking from {booking.date}</strong>
-            </div>
-            {style === "current" && (
-              <Button
-                type="button"
-                style="cancel"
-                handleClick={() => handleCancelBooking(booking._id)}
-              >
-                Cancel booking
-              </Button>
-            )}
-          </div>
-        </div>
-      </li>
-    ))
+        </li>
+      )
+    })
   }
 
   const currentBookingsCards = createBookingCards(

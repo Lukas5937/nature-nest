@@ -84,7 +84,7 @@ export default function CabinDetails() {
             </Button>
             <div className="mt-6 grid grid-rows-[auto_1fr] gap-6 md:grid-cols-2 xl:grid-cols-[60%_1fr] xl:gap-12">
               <div className="col-span-1 row-start-2 mt-4 md:row-span-full md:mt-0">
-                <CabinImages />
+                <CabinImages cabin={data} />
               </div>
               <div>
                 <h1 className="text-2xl font-bold text-darkGreen">{name}</h1>
