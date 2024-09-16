@@ -3,7 +3,6 @@ import { type Cabin, type FetchError } from "../../util/http"
 import useImageURLs from "../../hooks/useImageUrls"
 
 import CabinCard from "./components/CabinCard"
-import { CircularProgress } from "@mui/material"
 import FetchErrorBox from "../../UI/FetchErrorBox"
 
 export default function Cabins() {
@@ -27,7 +26,6 @@ export default function Cabins() {
       {isPending && (
         <div className="flex w-full items-center justify-center gap-2">
           <p>Loading...</p>
-          <CircularProgress className="circular-progress" />
         </div>
       )}
       {data && displayedCabins.length === 0 && (
