@@ -25,13 +25,11 @@ export default function CabinsNavigation() {
     handleResetBookingPeriod,
   } = useCabinsFilters()
 
-  const { bookingPeriod, addBookingPeriod } = useContext(BookingContext)
+  const { addBookingPeriod } = useContext(BookingContext)
 
   useEffect(() => {
     addBookingPeriod(null)
   }, [addBookingPeriod])
-
-  console.log(bookingPeriod)
 
   const outletContext = {
     data,

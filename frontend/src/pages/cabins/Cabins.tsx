@@ -40,7 +40,6 @@ export default function Cabins() {
         <ul className="grid gap-2 sm:grid-cols-2 xl:grid-cols-3">
           {displayedCabins.map((cabin) => {
             const coverImageUrl = createCoverImageUrl(cabin)
-            console.log(coverImageUrl)
             return (
               <li key={cabin._id}>
                 <CabinCard cabin={cabin} img={coverImageUrl} />
