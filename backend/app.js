@@ -54,9 +54,7 @@ app.use((error, req, res, next) => {
 })
 
 mongoose
-  .connect(
-    'mongodb+srv://lukasreich:z14rfxgEy9ZSDqkp@cluster0.xkui1.mongodb.net/nature-nests?retryWrites=true&w=majority&appName=Cluster0'
-  )
+  .connect(process.env.MONGODB_URL)
   .then(() => {
     console.log('Connected to database.')
     app.listen(PORT, (err) => {

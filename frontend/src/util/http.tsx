@@ -1,5 +1,7 @@
 import { QueryClient } from "@tanstack/react-query"
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL
+
 export const queryClient = new QueryClient()
 
 export type FetchError = {
@@ -26,7 +28,7 @@ export type Cabin = {
 }
 
 export async function fetchCabins({ signal }: { signal?: AbortSignal }) {
-  const url = "http://localhost:4000/api/v1/cabins"
+  const url = `${backendUrl}/cabins`
 
   const response = await fetch(url, { signal })
 
@@ -55,7 +57,7 @@ export async function fetchCabin({
     throw new Error("Cabin ID is required.")
   }
 
-  const url = `http://localhost:4000/api/v1/cabins/${cabinId}`
+  const url = `${backendUrl}/cabins/${cabinId}`
 
   const response = await fetch(url, { signal })
 
@@ -79,7 +81,7 @@ export type LoginUser = {
 }
 
 export async function fetchAPIKey({ signal }: { signal?: AbortSignal }) {
-  const url = "http://localhost:4000/api/v1/google-maps-key"
+  const url = `${backendUrl}/google-maps-key`
 
   const response = await fetch(url, { signal })
 
@@ -98,7 +100,7 @@ export async function fetchAPIKey({ signal }: { signal?: AbortSignal }) {
 }
 
 export async function loginUser(userData: LoginUser) {
-  const response = await fetch(`http://localhost:4000/api/v1/users/login`, {
+  const response = await fetch(`${backendUrl}/users/login`, {
     method: "POST",
     body: JSON.stringify(userData),
     headers: {
@@ -127,7 +129,7 @@ export type SignUpUser = {
 }
 
 export async function signUpUser(userData: SignUpUser) {
-  const response = await fetch(`http://localhost:4000/api/v1/users/signup`, {
+  const response = await fetch(`${backendUrl}/users/signup`, {
     method: "POST",
     body: JSON.stringify(userData),
     headers: {
@@ -166,7 +168,7 @@ export async function createBooking({
   bookingData,
   token,
 }: CreateBookingProps) {
-  const response = await fetch(`http://localhost:4000/api/v1/bookings/new`, {
+  const response = await fetch(`${backendUrl}/bookings/new`, {
     method: "POST",
     body: JSON.stringify(bookingData),
     headers: {
@@ -206,7 +208,7 @@ export async function fetchBookings({
   signal?: AbortSignal
   token: string
 }) {
-  const url = `http://localhost:4000/api/v1/bookings`
+  const url = `${backendUrl}/bookings`
 
   const response = await fetch(url, {
     method: "GET",
@@ -237,7 +239,7 @@ export type DeleteBookingProps = {
 }
 
 export async function deleteBooking({ bookingId, token }: DeleteBookingProps) {
-  const response = await fetch(`http://localhost:4000/api/v1/bookings/delete`, {
+  const response = await fetch(`${backendUrl}/bookings/delete`, {
     method: "DELETE",
     body: JSON.stringify({ bookingId }),
     headers: {
