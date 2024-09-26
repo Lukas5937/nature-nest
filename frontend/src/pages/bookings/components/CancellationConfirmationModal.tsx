@@ -46,7 +46,7 @@ export default function CancellationConfirmationModal({
               Cancel
             </Button>
             <Button
-              style="modalConfirm"
+              style="modalDelete"
               type="button"
               handleClick={deleteBooking}
             >

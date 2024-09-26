@@ -23,9 +23,9 @@ export default function SortButtons({
   }
 
   const styles =
-    "relative rounded border border-gray-300 bg-grayCard px-3 py-2 text-sm text-dark cursor-pointer focus:outline-none"
+    "relative cursor-pointer rounded border border-gray-300 bg-grayCard px-3 py-2 text-sm text-dark focus:outline-none"
   const activeStyles =
-    "relative rounded border border-gray-300 bg-greenCard px-3 py-2 text-sm text-darkGreen cursor-pointer outline outline-2 outline-green"
+    "relative cursor-pointer rounded border border-gray-300 bg-greenCard px-3 py-2 text-sm text-darkGreen outline outline-2 outline-green"
 
   return (
     <fieldset className="mt-8 grid grid-cols-2 items-start gap-2 text-sm xs:flex sm:text-base lg:mt-12 lg:grid lg:grid-cols-2 lg:items-stretch">

@@ -10,6 +10,7 @@ type BaseButtonProps = {
     | "back"
     | "modal"
     | "modalConfirm"
+    | "modalDelete"
     | "date"
     | "dateReset"
     | "cancel"
@@ -43,12 +44,17 @@ export default function Button(props: ButtonComponentProps) {
 
   if (style === "modal") {
     classes = classes =
-      "flex rounded-md border bg-white px-4 py-2 text-darkGreen shadow-sm hover:bg-red-50"
+      "flex rounded-md border bg-white px-4 py-2 text-darkGreen shadow-sm"
   }
 
   if (style === "modalConfirm") {
     classes = classes =
       "rounded-md border bg-white px-4 py-2 text-darkGreen shadow-sm hover:bg-emerald-50 hover:outline hover:outline-2 hover:outline-green"
+  }
+
+  if (style === "modalDelete") {
+    classes = classes =
+      "flex rounded-md border bg-white px-4 py-2 text-darkGreen shadow-sm hover:bg-red-50"
   }
 
   if (style === "date") {

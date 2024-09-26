@@ -1,3 +1,4 @@
+import { lazy, Suspense } from "react"
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import ContextProviders from "./context/ContextProviders"
 
@@ -5,15 +6,19 @@ import Navigation from "./Navigation"
 import ErrorPage from "./ErrorPage"
 import Home from "./pages/home/Home"
 import CabinsNavigation from "./pages/cabins/CabinsNavigation"
-import Cabins from "./pages/cabins/Cabins"
-import CabinDetails from "./pages/cabinDetails/CabinDetails"
 import CabinDetailsDescription from "./pages/cabinDetails/components/CabinDetailsDescription"
-import CabinDetailsMap from "./pages/cabinDetails/components/CabinDetailsMap"
 import Authentication from "./pages/authentication/Authentication"
 import ProtectedRoute from "./ProtectedRoute"
-import Bookings from "./pages/bookings/Bookings"
 import NewBooking from "./pages/newBooking/NewBooking"
 import Logout from "./pages/authentication/Logout"
+import CircularProgress from "@mui/material/CircularProgress"
+
+const Cabins = lazy(() => import("./pages/cabins/Cabins"))
+const CabinDetails = lazy(() => import("./pages/cabinDetails/CabinDetails"))
+const CabinDetailsMap = lazy(
+  () => import("./pages/cabinDetails/components/CabinDetailsMap"),
+)
+const Bookings = lazy(() => import("./pages/bookings/Bookings"))
 
 function App() {
   const router = createBrowserRouter([
@@ -27,13 +32,31 @@ function App() {
           path: "cabins",
           element: <CabinsNavigation />,
           children: [
-            { path: "", element: <Cabins /> },
+            {
+              path: "",
+              element: (
+                <Suspense fallback={<CircularProgress />}>
+                  <Cabins />
+                </Suspense>
+              ),
+            },
             {
               path: ":cabinId",
-              element: <CabinDetails />,
+              element: (
+                <Suspense fallback={<CircularProgress />}>
+                  <CabinDetails />
+                </Suspense>
+              ),
               children: [
                 { path: "", element: <CabinDetailsDescription /> },
-                { path: "map", element: <CabinDetailsMap /> },
+                {
+                  path: "map",
+                  element: (
+                    <Suspense fallback={<CircularProgress />}>
+                      <CabinDetailsMap />
+                    </Suspense>
+                  ),
+                },
               ],
             },
           ],
@@ -51,7 +74,9 @@ function App() {
           path: "bookings",
           element: (
             <ProtectedRoute>
-              <Bookings />
+              <Suspense fallback={<CircularProgress />}>
+                <Bookings />
+              </Suspense>
             </ProtectedRoute>
           ),
         },
