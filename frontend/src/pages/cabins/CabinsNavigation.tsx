@@ -42,7 +42,7 @@ export default function CabinsNavigation() {
 
   return (
     <main className="mx-auto grid w-11/12 max-w-screen-xl gap-4 lg:my-8 lg:grid-cols-[1fr_auto] lg:gap-8">
-      <section className="grid grid-rows-[1fr_auto] items-start lg:sticky lg:top-8 lg:block lg:h-max">
+      <section className="grid grid-rows-[1fr_auto] items-start lg:sticky lg:top-8 lg:block lg:h-max lg:max-w-64">
         <div>
           <fieldset className="flex flex-col gap-4 border-0 lg:mt-4">
             <legend className="mb-2 text-lg font-semibold text-dark">
