@@ -1,10 +1,18 @@
 import { useContext } from "react"
+import { useNavigate } from "react-router-dom"
 import { ModalContext } from "../../../context/ModalContext"
 import Modal from "../../../UI/Modal"
 import Button from "../../../UI/Button"
 
 export default function UnavailableBookingPeriodModal() {
   const { activeModal, hideModal } = useContext(ModalContext)
+
+  const navigate = useNavigate()
+
+  function handleViewAllCabins() {
+    navigate("/cabins")
+    hideModal()
+  }
 
   return (
     <Modal
@@ -19,7 +27,7 @@ export default function UnavailableBookingPeriodModal() {
         select a different booking period or choose another cabin.
       </p>
       <div className="mt-4 flex gap-6 text-sm xs:text-base">
-        <Button type="link" style="modal" to="/cabins">
+        <Button type="button" style="modal" handleClick={handleViewAllCabins}>
           View All Cabins
         </Button>
         <Button type="button" style="modal" handleClick={hideModal}>
