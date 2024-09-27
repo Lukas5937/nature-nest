@@ -11,7 +11,7 @@ import Authentication from "./pages/authentication/Authentication"
 import ProtectedRoute from "./ProtectedRoute"
 import NewBooking from "./pages/newBooking/NewBooking"
 import Logout from "./pages/authentication/Logout"
-import CircularProgress from "@mui/material/CircularProgress"
+import LoadingSpinner from "./UI/LoadingSpinner"
 
 const Cabins = lazy(() => import("./pages/cabins/Cabins"))
 const CabinDetails = lazy(() => import("./pages/cabinDetails/CabinDetails"))
@@ -35,7 +35,7 @@ function App() {
             {
               path: "",
               element: (
-                <Suspense fallback={<CircularProgress />}>
+                <Suspense fallback={<LoadingSpinner />}>
                   <Cabins />
                 </Suspense>
               ),
@@ -43,7 +43,7 @@ function App() {
             {
               path: ":cabinId",
               element: (
-                <Suspense fallback={<CircularProgress />}>
+                <Suspense fallback={<LoadingSpinner />}>
                   <CabinDetails />
                 </Suspense>
               ),
@@ -52,7 +52,7 @@ function App() {
                 {
                   path: "map",
                   element: (
-                    <Suspense fallback={<CircularProgress />}>
+                    <Suspense fallback={<LoadingSpinner />}>
                       <CabinDetailsMap />
                     </Suspense>
                   ),
@@ -74,7 +74,7 @@ function App() {
           path: "bookings",
           element: (
             <ProtectedRoute>
-              <Suspense fallback={<CircularProgress />}>
+              <Suspense fallback={<LoadingSpinner />}>
                 <Bookings />
               </Suspense>
             </ProtectedRoute>

@@ -1,7 +1,7 @@
 import { useSearchParams } from "react-router-dom"
 import useSignUpUser from "./hooks/useSignUpUser"
 import useLoginUser from "./hooks/useLoginUser"
-import { CircularProgress } from "@mui/material"
+import LoadingSpinner from "../../UI/LoadingSpinner"
 import FetchErrorBox from "../../UI/FetchErrorBox"
 import LoginForm from "./components/LoginForm"
 import SignUpForm from "./components/SignupForm"
@@ -30,7 +30,7 @@ export default function Authentication() {
         (signUpIsPending && (
           <>
             <p>Loading...</p>
-            <CircularProgress />
+            <LoadingSpinner />
           </>
         ))}
       {loginIsError ||

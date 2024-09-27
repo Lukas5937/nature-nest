@@ -26,7 +26,7 @@ export default function UnavailableBookingPeriodModal() {
         The selected cabin is already booked for the chosen period. Please
         select a different booking period or choose another cabin.
       </p>
-      <div className="mt-4 flex gap-6 text-sm xs:text-base">
+      <div className="mt-4 flex gap-4 text-sm xs:text-base">
         <Button type="button" style="modal" handleClick={handleViewAllCabins}>
           View All Cabins
         </Button>

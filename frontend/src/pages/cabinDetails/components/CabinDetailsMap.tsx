@@ -7,7 +7,7 @@ import {
   type FetchError,
   fetchAPIKey,
 } from "../../../util/http"
-import { CircularProgress } from "@mui/material"
+import LoadingSpinner from "../../../UI/LoadingSpinner"
 import FetchErrorBox from "../../../UI/FetchErrorBox"
 
 type CabinDetailsMapContext = {
@@ -61,7 +61,7 @@ export default function CabinDetailsMap() {
   return (
     <>
       {data && <div className="h-72 w-full" ref={mapRef}></div>}{" "}
-      {isPending && <CircularProgress className="circular-progress" />}
+      {isPending && <LoadingSpinner />}
       {isError && error && <FetchErrorBox error={error} />}
     </>
   )

@@ -40,16 +40,16 @@ export default function CabinDetails() {
   }>()
 
   function handleBookNow() {
+    if (!token) {
+      showLoginFirst()
+      return
+    }
     if (!bookingPeriod) {
       showSelectBookingPeriod()
       return
     }
     if (invalidDatesMessage) {
       showInvalidBookingPeriod()
-      return
-    }
-    if (!token) {
-      showLoginFirst()
       return
     }
     if (

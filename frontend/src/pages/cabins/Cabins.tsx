@@ -22,7 +22,7 @@ export default function Cabins() {
   }
 
   return (
-    <section className="mx-auto max-w-screen-2xl">
+    <section className="w-full">
       {isPending && (
         <div className="flex w-full items-center justify-center gap-2">
           <p>Loading...</p>

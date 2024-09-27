@@ -8,15 +8,8 @@ body {
 }
 
 .circular-progress {
-  position: absolute;
+  position: absolute !important;
   color: #242432 !important;
-  width: 1.25rem !important;
-  height: 1.25rem !important;
-}
-
-.circular-progress.magenta {
-  position: absolute;
-  color: #d14f78 !important;
   width: 1.25rem !important;
   height: 1.25rem !important;
 }

@@ -12,7 +12,7 @@ import useImageURLs from "../../hooks/useImageUrls"
 
 import CancellationConfirmationModal from "./components/CancellationConfirmationModal"
 import Button from "../../UI/Button"
-import CircularProgress from "@mui/material/CircularProgress"
+import LoadingSpinner from "../../UI/LoadingSpinner"
 import FetchErrorBox from "../../UI/FetchErrorBox"
 
 export default function Bookings() {
@@ -161,7 +161,7 @@ export default function Bookings() {
           <ul className="mt-2 flex flex-col gap-4">{pastBookingsCards}</ul>
         </>
       )}
-      {isPending && <CircularProgress />}
+      {isPending && <LoadingSpinner />}
       {isError && <FetchErrorBox error={error} />}
       {selectedBookingId && (
         <CancellationConfirmationModal bookingId={selectedBookingId} />
