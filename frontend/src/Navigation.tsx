@@ -13,30 +13,18 @@ export default function Navigation() {
   const { token } = loginContext
 
   return (
-    <div className="bg-light">
-      <nav className="mx-auto w-11/12 max-w-screen-xl">
-        <ul className="flex items-center gap-8 py-8 text-lg lg:gap-16 lg:text-xl">
-          <li className="mr-auto">
-            <NavLink
-              to=""
-              className="font-serif text-xl font-bold text-darkGreen sm:text-2xl"
-            >
-              NatureNests
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              className={({ isActive }) =>
-                isActive
-                  ? "hidden border-b-2 border-stone-300 md:block"
-                  : "hidden hover:text-dark md:block"
-              }
-              to="/cabins"
-            >
-              Cabins
-            </NavLink>
-          </li>
-          {token && (
+    <div className="flex min-h-screen flex-col justify-between bg-light">
+      <div>
+        <nav className="mx-auto w-11/12 max-w-screen-xl">
+          <ul className="flex items-center gap-8 py-8 text-lg lg:gap-16 lg:text-xl">
+            <li className="mr-auto">
+              <NavLink
+                to=""
+                className="font-serif text-xl font-bold text-darkGreen sm:text-2xl"
+              >
+                NatureNests
+              </NavLink>
+            </li>
             <li>
               <NavLink
                 className={({ isActive }) =>
@@ -44,44 +32,58 @@ export default function Navigation() {
                     ? "hidden border-b-2 border-stone-300 md:block"
                     : "hidden hover:text-dark md:block"
                 }
-                to="/bookings"
+                to="/cabins"
               >
-                My bookings
+                Cabins
               </NavLink>
             </li>
-          )}
-          {!token && (
-            <li>
-              <NavLink
-                className={({ isActive }) =>
-                  isActive
-                    ? "hidden border-b-2 border-stone-300 md:block"
-                    : "hidden hover:text-dark md:block"
-                }
-                to="/auth?mode=login"
-              >
-                Login
-              </NavLink>
-            </li>
-          )}
-          {token && (
-            <li>
-              <NavLink
-                className={({ isActive }) =>
-                  isActive
-                    ? "hidden border-b-2 border-stone-300 md:block"
-                    : "hidden hover:text-dark md:block"
-                }
-                to="/logout"
-              >
-                Logout
-              </NavLink>
-            </li>
-          )}
-          <TemporaryDrawer />
-        </ul>
-      </nav>
-      <Outlet />
+            {token && (
+              <li>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive
+                      ? "hidden border-b-2 border-stone-300 md:block"
+                      : "hidden hover:text-dark md:block"
+                  }
+                  to="/bookings"
+                >
+                  My bookings
+                </NavLink>
+              </li>
+            )}
+            {!token && (
+              <li>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive
+                      ? "hidden border-b-2 border-stone-300 md:block"
+                      : "hidden hover:text-dark md:block"
+                  }
+                  to="/auth?mode=login"
+                >
+                  Login
+                </NavLink>
+              </li>
+            )}
+            {token && (
+              <li>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive
+                      ? "hidden border-b-2 border-stone-300 md:block"
+                      : "hidden hover:text-dark md:block"
+                  }
+                  to="/logout"
+                >
+                  Logout
+                </NavLink>
+              </li>
+            )}
+            <TemporaryDrawer />
+          </ul>
+        </nav>
+        <Outlet />
+      </div>
       <Footer />
       <ScrollRestoration />
     </div>

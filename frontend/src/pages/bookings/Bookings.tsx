@@ -156,9 +156,16 @@ export default function Bookings() {
           <h2 className="mt-8 text-2xl font-semibold text-darkGreen">
             Current bookings
           </h2>
-          <ul className="mt-2 flex flex-col gap-4">{currentBookingsCards}</ul>
-          <h2 className="mt-8 text-2xl font-semibold">Past bookings</h2>
-          <ul className="mt-2 flex flex-col gap-4">{pastBookingsCards}</ul>
+          {currentBookings.length > 0 && (
+            <ul className="mt-2 flex flex-col gap-4">{currentBookingsCards}</ul>
+          )}
+          {currentBookings.length === 0 && <p>You have no current bookings.</p>}
+          {pastBookings.length > 0 && (
+            <>
+              <h2 className="mt-8 text-2xl font-semibold">Past bookings</h2>
+              <ul className="mt-2 flex flex-col gap-4">{pastBookingsCards}</ul>
+            </>
+          )}
         </>
       )}
       {isPending && <LoadingSpinner />}
