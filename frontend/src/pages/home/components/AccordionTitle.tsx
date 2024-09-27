@@ -13,7 +13,7 @@ export default function AccordionTitle({ children }: { children: ReactNode }) {
 
   return (
     <div
-      className="flex justify-between gap-4 border-b-2 py-8 hover:cursor-pointer"
+      className="flex justify-between gap-4 border-b-2 py-6 hover:cursor-pointer md:py-8"
       onClick={() => toggleItem(id)}
     >
       <h3 className="text-xl font-light text-light sm:text-2xl lg:text-dark">

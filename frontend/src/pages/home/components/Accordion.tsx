@@ -27,7 +27,7 @@ export default function Accordion({ children }: { children: ReactNode }) {
   }
   return (
     <AccordionContext.Provider value={value}>
-      <div className="mt-6 lg:mt-12">{children}</div>
+      <div className="my-6 lg:mt-12">{children}</div>
     </AccordionContext.Provider>
   )
 }

@@ -16,7 +16,7 @@ export default function WhatWeOffer() {
   return (
     <section ref={scrollRef} className="bg-bgMagenta">
       <div className="grid grid-cols-1 grid-rows-1 gap-4 lg:grid-cols-2">
-        <div className="relative col-span-full row-span-full h-[600px] lg:col-span-1 lg:h-screen">
+        <div className="relative col-span-full row-span-full xs:h-[600px] lg:col-span-1 lg:h-screen">
           <img
             className="h-full w-full object-cover"
             src={Cabin}
