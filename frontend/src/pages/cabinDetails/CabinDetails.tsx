@@ -27,6 +27,7 @@ export default function CabinDetails() {
     showSelectBookingPeriod,
     showInvalidBookingPeriod,
     showUnavailableBookingPeriod,
+    hideModal,
   } = useContext(ModalContext)
   const { bookingPeriod } = useContext(BookingContext)
 
@@ -61,6 +62,10 @@ export default function CabinDetails() {
     }
     showBookingConfirmation()
   }
+
+  useEffect(() => {
+    hideModal()
+  }, [hideModal])
 
   useEffect(() => {
     if (

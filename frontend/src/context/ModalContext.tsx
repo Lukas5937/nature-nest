@@ -1,4 +1,4 @@
-import { createContext, useState, type ReactNode } from "react"
+import { createContext, useState, useCallback, type ReactNode } from "react"
 
 type ModalContextProviderProps = {
   children: ReactNode
@@ -63,9 +63,9 @@ export default function ModalContextProvider({
     setActiveModal("cancellationConfirmation")
   }
 
-  function hideModal() {
+  const hideModal = useCallback(() => {
     setActiveModal(null)
-  }
+  }, [])
 
   const value = {
     activeModal,
