@@ -23,13 +23,13 @@ export default function SortButtons({
   }
 
   const styles =
-    "relative cursor-pointer rounded border border-gray-300 bg-grayCard px-3 py-2 text-sm text-dark focus:outline-none"
+    "relative flex cursor-pointer items-center justify-center rounded border border-gray-300 bg-grayCard px-3 py-2 text-sm text-dark focus:outline-none"
   const activeStyles =
-    "relative cursor-pointer rounded border border-gray-300 bg-greenCard px-3 py-2 text-sm text-darkGreen outline outline-2 outline-green"
+    "relative flex cursor-pointer items-center justify-center rounded border border-gray-300 bg-greenCard px-3 py-2 text-sm text-darkGreen outline outline-2 outline-green"
 
   return (
-    <fieldset className="mt-8 grid grid-cols-2 items-start gap-2 text-sm xs:flex sm:text-base lg:mt-12 lg:grid lg:grid-cols-2 lg:items-stretch">
-      <legend className="mb-2 text-text">Sort options</legend>
+    <fieldset className="mt-8 grid grid-cols-2 gap-2 text-sm xs:flex sm:text-base lg:mt-12 lg:grid lg:grid-cols-2">
+      <legend className="mb-2 whitespace-nowrap text-text">Sort options</legend>
       <label className={activeSortMethod === "name" ? activeStyles : styles}>
         Name
         <input

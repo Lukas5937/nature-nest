@@ -83,7 +83,7 @@ export default function CabinsNavigation() {
             </Button>
           </div>
         </div>
-        <div className="mt-8 grid items-end gap-4 lg:mt-0 lg:flex lg:flex-col lg:items-stretch">
+        <div className="mt-8 grid gap-4 lg:mt-0">
           <SortButtons
             activeSortMethod={activeSortMethod}
             setActiveSortMethod={setActiveSortMethod}
