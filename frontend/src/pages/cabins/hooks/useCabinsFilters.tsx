@@ -26,12 +26,16 @@ export default function useCabinsFilters() {
     return `${month}/${day}/${year}`
   }
 
-  function handleCheckInValue(event: ChangeEvent<HTMLInputElement>) {
-    setCheckInDate(event.currentTarget.value)
+  function handleCheckInValue(date: Date | null) {
+    if (date) {
+      setCheckInDate(formatDate(date))
+    }
   }
 
-  function handleCheckOutValue(event: ChangeEvent<HTMLInputElement>) {
-    setCheckOutDate(event.currentTarget.value)
+  function handleCheckOutValue(date: Date | null) {
+    if (date) {
+      setCheckOutDate(formatDate(date))
+    }
   }
 
   function createDatesArray(checkIn: string, checkOut: string) {

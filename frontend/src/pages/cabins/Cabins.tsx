@@ -29,7 +29,7 @@ export default function Cabins() {
         </div>
       )}
       {data && displayedCabins.length === 0 && (
-        <p className="mt-8 text-lg font-semibold">
+        <p className="mt-12 text-center text-lg font-semibold">
           No cabins match your search criteria. Please try adjusting your
           filters.
         </p>

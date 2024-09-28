@@ -13,7 +13,7 @@ export default function LoginFirstModal() {
         Please log in to complete your booking. If you don't have an account,
         click the button below to create one.
       </p>
-      <div className="mt-4 flex gap-2 text-sm xs:gap-6 xs:text-base">
+      <div className="mt-4 flex gap-2 text-sm xs:gap-4 xs:text-base">
         <Button type="button" style="modal" handleClick={hideModal}>
           Close
         </Button>

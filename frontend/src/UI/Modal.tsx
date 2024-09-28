@@ -47,16 +47,11 @@ export default function Modal({ children, open, onClose }: ModalProps) {
 
   return createPortal(
     <dialog
-      className="w-11/12 max-w-md rounded bg-light text-darkGreen backdrop:bg-black/15 backdrop:backdrop-blur-sm"
+      className="w-11/12 max-w-md overflow-auto rounded bg-light text-darkGreen backdrop:bg-black/15 backdrop:backdrop-blur-sm"
       ref={dialogRef}
       onClose={onClose}
     >
-      <div
-        onClick={(event) => event.stopPropagation()}
-        className="h-full w-full p-8"
-      >
-        {children}
-      </div>
+      <div className="p-8">{children}</div>
     </dialog>,
     modalRoot,
   )

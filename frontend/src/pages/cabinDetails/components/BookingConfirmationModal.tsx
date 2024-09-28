@@ -72,7 +72,7 @@ export default function BookingConfirmationModal({
             </p>
             <p>Total price: ${totalPrice}</p>
           </div>
-          <div className="mt-6 flex gap-2 text-sm xs:gap-6 xs:text-base">
+          <div className="mt-6 flex gap-2 text-sm xs:gap-4 xs:text-base">
             <Button type="button" style="modal" handleClick={hideModal}>
               Cancel
             </Button>

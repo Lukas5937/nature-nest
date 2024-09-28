@@ -16,7 +16,7 @@ export default function Navigation() {
     <div className="flex min-h-screen flex-col justify-between bg-light">
       <div>
         <nav className="mx-auto w-11/12 max-w-screen-xl">
-          <ul className="flex items-center gap-8 py-8 text-lg lg:gap-16 lg:text-xl">
+          <ul className="flex items-center py-8 text-lg md:gap-6 lg:gap-12 lg:text-xl">
             <li className="mr-auto">
               <NavLink
                 to=""
