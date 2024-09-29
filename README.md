@@ -18,7 +18,7 @@ Both the frontend and backend are deployed, with the frontend hosted on Netlify 
 [NatureNests - Explore Now!](https://nature-nests.netlify.app)
 
 ### Technologies Used
-- **Frontend**: React, TypeScript, React Router, Framer Motion, Google Maps JavaScript API
+- **Frontend**: React, TypeScript, React Router, Tanstack Query, Framer Motion, Google Maps JavaScript API
 - **Backend**: Node.js, Express, MongoDB with Mongoose, bcryptjs, express-validator, jsonwebtoken
 - **Hosting**: Frontend (Netlify), Backend (Heroku)
 
@@ -45,7 +45,7 @@ Das Frontend wurde mit Netlify und das Backend mit Heroku gehosted. Sie können 
 [NatureNests - Jetzt Entdecken!](https://nature-nests.netlify.app)
 
 ### Verwendete Technologien
-- **Frontend**: React, TypeScript, React Router, Framer Motion, Google Maps JavaScript API
+- **Frontend**: React, TypeScript, React Router, Tanstack Query, Framer Motion, Google Maps JavaScript API
 - **Backend**: Node.js, Express, MongoDB mit Mongoose, bcryptjs, express-validator, jsonwebtoken
 - **Hosting**: Frontend (Netlify), Backend (Heroku)
 
