@@ -28,7 +28,7 @@ export default function SearchInput({ handleChange }: CabinsInputProps) {
   }, [searchIsOpen])
 
   return (
-    <div className="row-start-1 lg:mt-8">
+    <div className="lg:mt-8">
       {!searchIsOpen && (
         <button
           className="flex items-center gap-2 border-b border-gray-300 py-4 text-text hover:border-b hover:border-green lg:mt-0"
@@ -40,7 +40,7 @@ export default function SearchInput({ handleChange }: CabinsInputProps) {
       )}
       {searchIsOpen && (
         <input
-          className="border-1 border-b border-gray-300 bg-light px-2 py-4 text-darkGreen placeholder:text-text focus:border-b focus:border-green focus:outline-none"
+          className="border-1 border-b border-gray-300 bg-light px-2 py-4 text-darkGreen placeholder:text-text focus:border-b focus:border-green focus:outline-none lg:w-full"
           id="cabinsSearch"
           type="search"
           ref={searchRef}

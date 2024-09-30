@@ -84,11 +84,11 @@ export default function CabinsNavigation() {
           </div>
         </div>
         <div className="mt-8 grid gap-4 lg:mt-0">
+          <SearchInput handleChange={handleSearchValue} />
           <SortButtons
             activeSortMethod={activeSortMethod}
             setActiveSortMethod={setActiveSortMethod}
           />
-          <SearchInput handleChange={handleSearchValue} />
         </div>
       </section>
       <Outlet context={outletContext} />
