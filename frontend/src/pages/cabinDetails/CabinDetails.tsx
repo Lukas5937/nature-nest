@@ -113,7 +113,10 @@ export default function CabinDetails() {
                   </Button>
                 </div>
                 <div className="mt-6">
-                  <nav className="mb-6 flex gap-8 pb-2">
+                  <nav
+                    className="mb-6 flex gap-8 pb-2"
+                    aria-label="cabin details page navigation"
+                  >
                     <NavLink
                       className={({ isActive }) =>
                         isActive

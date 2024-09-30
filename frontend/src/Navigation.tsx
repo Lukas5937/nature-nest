@@ -15,7 +15,10 @@ export default function Navigation() {
   return (
     <div className="flex min-h-screen flex-col justify-between bg-light">
       <div>
-        <nav className="mx-auto w-11/12 max-w-screen-xl">
+        <nav
+          className="mx-auto w-11/12 max-w-screen-xl"
+          aria-label="main navigation"
+        >
           <ul className="flex items-center py-8 text-lg md:gap-6 lg:gap-12 lg:text-xl">
             <li className="mr-auto">
               <NavLink
