@@ -19,7 +19,7 @@ export default function Introduction() {
           <img
             className="h-auto w-64 sm:w-80"
             src={Cabin}
-            alt="Cabin graphic"
+            alt="Cabin surrounded by trees"
           />
         </div>
         <motion.div style={{ y: moveUp }}>

@@ -91,7 +91,7 @@ export default function Button(props: ButtonComponentProps) {
             <motion.img
               className="h-auto w-8"
               src={Back}
-              alt="back"
+              alt=""
               variants={{
                 hover: { x: 2 },
               }}

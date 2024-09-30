@@ -31,7 +31,7 @@ export default function Header() {
           <motion.img
             className="h-full w-full object-cover"
             src={Forest}
-            alt="Forest"
+            alt="Forest with tall trees and overcast sky"
             style={{ scale }}
           />
         </div>
@@ -40,7 +40,7 @@ export default function Header() {
           <motion.img
             className="h-full w-full object-cover"
             src={Waterfall}
-            alt="Waterfall"
+            alt="Rushing waterfall with a person standing at the base"
             style={{ scale }}
           />
         </div>
