@@ -40,7 +40,7 @@ Die App bietet die folgenden Funktionen:
 - Sortierungsoptionen basierend auf Preis (auf- und absteigend), Name und Beliebtheit.
 - Integration der Google Maps JavaScript API zur Anzeige von Hütten auf einer Karte.
 
-Das Frontend wurde mit Netlify und das Backend mit Heroku gehosted. Sie können die aktuelle Version der App hier einsehen: [NatureNests - Jetzt Entdecken!](https://nature-nests.netlify.app)
+Das Frontend wurde mit Netlify und das Backend mit Heroku gehosted. Sie können die aktuelle Version der App hier ausprobieren: [NatureNests - Jetzt Entdecken!](https://nature-nests.netlify.app)
 
 ### Verwendete Technologien
 - **Frontend**: React, TypeScript, React Router, Tanstack Query, Framer Motion, Google Maps JavaScript API
