@@ -14,8 +14,14 @@ The app provides the following features:
 - Sorting options based on price (ascending and descending), name, and popularity.
 - Integration of the Google Maps JavaScript API to display cabins on a map.
 
-Both the frontend and backend are deployed, with the frontend hosted on Netlify and the backend on Heroku. You can check out the deployed version of the app here:  
-[NatureNests - Explore Now!](https://nature-nests.netlify.app)
+Both the frontend and backend are deployed, with the frontend hosted on Netlify and the backend on Heroku. You can check out the deployed version of the app here: [NatureNests - Explore Now!](https://nature-nests.netlify.app)
+
+### Test Account
+A test account is available for users to log in and explore the app. You can use the following credentials to access the application:
+- **Email**: max.mustermann@web.de
+- **Password**: abcdef
+
+Additionally, users also have the option to create their own accounts.
 
 ### Technologies Used
 - **Frontend**: React, TypeScript, React Router, Tanstack Query, Framer Motion, Google Maps JavaScript API
@@ -41,8 +47,14 @@ Die App bietet die folgenden Funktionen:
 - Sortierungsoptionen basierend auf Preis (auf- und absteigend), Name und Beliebtheit.
 - Integration der Google Maps JavaScript API zur Anzeige von Hütten auf einer Karte.
 
-Das Frontend wurde mit Netlify und das Backend mit Heroku gehosted. Sie können die aktuelle Version der App hier einsehen:  
-[NatureNests - Jetzt Entdecken!](https://nature-nests.netlify.app)
+Das Frontend wurde mit Netlify und das Backend mit Heroku gehosted. Sie können die aktuelle Version der App hier ausprobieren: [NatureNests - Jetzt Entdecken!](https://nature-nests.netlify.app)
+
+### Test-Account
+Ein Test-Account steht zur Verfügung, damit Benutzer sich anmelden und die App erkunden können. Sie können die folgenden Anmeldedaten verwenden, um sich einzuloggen:
+- **E-Mail**: max.mustermann@web.de
+- **Passwort**: abcdef
+
+Darüber hinaus haben Benutzer die Möglichkeit, eigene Konten zu erstellen.
 
 ### Verwendete Technologien
 - **Frontend**: React, TypeScript, React Router, Tanstack Query, Framer Motion, Google Maps JavaScript API
