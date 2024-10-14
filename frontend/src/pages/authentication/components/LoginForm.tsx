@@ -11,7 +11,7 @@ export type ResponseError = Error & {
 }
 
 export default function LoginForm({ mutate }: LoginFormProps) {
-  const { serverError } = useContext(LoginContext)
+  const { serverError, changeServerError } = useContext(LoginContext)
   const emailRef = useRef<HTMLInputElement>(null)
   const passwordRef = useRef<HTMLInputElement>(null)
 
@@ -41,6 +41,10 @@ export default function LoginForm({ mutate }: LoginFormProps) {
     }
     mutate({ email, password })
     event.currentTarget.reset()
+  }
+
+  function handleSignUpLink() {
+    changeServerError("")
   }
 
   return (
@@ -81,21 +85,20 @@ export default function LoginForm({ mutate }: LoginFormProps) {
           />
           {formIsInvalid.password && (
             <p className="mt-1 text-sm text-magenta">
-              Your password must be at least 6 characters long.
+              Password incorrect. Please try again.
             </p>
           )}
         </div>
-
         {!formIsInvalid.password && serverError && (
           <p className="text-sm text-magenta">{serverError}</p>
         )}
-
         <div className="text-center">
           <p className="text-sm text-text">Don't have an account yet?</p>
           <p className="text-sm text-text">Join us today!</p>
           <Link
             className="text-green underline hover:text-greenHover"
             to="?mode=signup"
+            onClick={handleSignUpLink}
           >
             Sign up now to create your account.
           </Link>
