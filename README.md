@@ -24,7 +24,7 @@ A test account is available for users to log in and explore the app. You can use
 Additionally, users also have the option to create their own accounts.
 
 ### Technologies Used
-- **Frontend**: React, TypeScript, React Router, Tanstack Query, Framer Motion, Google Maps JavaScript API
+- **Frontend**: React, TypeScript, React Router, Tanstack Query, Tailwind CSS, Framer Motion, Google Maps JavaScript API
 - **Backend**: Node.js, Express, MongoDB with Mongoose, bcryptjs, express-validator, jsonwebtoken
 - **Hosting**: Frontend (Netlify), Backend (Heroku)
 
@@ -57,7 +57,7 @@ Ein Test-Account steht zur Verfügung, damit Benutzer sich anmelden und die App 
 Darüber hinaus haben Benutzer die Möglichkeit, eigene Konten zu erstellen.
 
 ### Verwendete Technologien
-- **Frontend**: React, TypeScript, React Router, Tanstack Query, Framer Motion, Google Maps JavaScript API
+- **Frontend**: React, TypeScript, React Router, Tanstack Query, Tailwind CSS, Framer Motion, Google Maps JavaScript API
 - **Backend**: Node.js, Express, MongoDB mit Mongoose, bcryptjs, express-validator, jsonwebtoken
 - **Hosting**: Frontend (Netlify), Backend (Heroku)
 
